@@ -1,0 +1,31 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+    <head>
+        <link href="https://fonts.googleapis.com/css?family=Overpass:300,400,700" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="../stylesheets/main_styles.css">
+        <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+        
+        <script src="../scripts/singleProblemFormatters.js"></script>
+        <script src="../assets/data/worksheet_data.js"></script>
+        <script src="../assets/data/worksheet_links.js"></script>  
+        <script src="../scripts/sharedMath.js"></script>
+        <script src="../scripts/sharedLatex.js"></script>
+        <script src="../scripts/controllers.js"></script>
+        <script src="../assets/data/controlFlow.js"></script>
+        <script src="../scripts/constantGenerators.js"></script>
+    </head>
+    <body>
+        <div id="body"></div>
+        <header class="header" id="header"></header>
+        <section class="control-panel collapsed" id="control-panel" ></section>
+        
+        <script>$("#body").load("../templates/previewPage.html");</script>
+        <script>$("#header").load("../templates/navBar.html");</script>
+        <script>$("#control-panel").load("../templates/controlPanel.html");</script>
+        
+        <script src="../scripts/controllers.js"></script>
+    </body>
+</html>
+
+<script>apply_worksheet_settings(worksheet_data.true_or_false_comparison);</script>
+<script>compile_latex_on_server();</script>

@@ -1,0 +1,758 @@
+p {
+    font-family: 'Overpass';
+}
+
+a, a:active, a:link, a:visited {
+    color: black;
+    text-decoration: none;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    font-family: "Overpass";
+    font-weight: 300;
+    text-align: center;
+    margin-top: 100px;
+    margin-left: 240px;
+}
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 80px;
+    border-bottom: 3px solid black;
+    width: 100%;
+    background-color: white;
+    z-index: 100;
+}
+
+#logo {
+    width: 60px;
+    height: 60px;
+    margin: 10px;
+    background-size: contain;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-image: url("../assets/icons/control/logo-2.png");
+}
+
+.expository-paragraph,
+.contact-boat {
+    margin-top: 180px;
+}
+
+.contact-boat {
+    margin-left: 50%;
+    transform: translateX(-50%);
+    -webkit-transform: translateX(-50%);
+    border: 0.5px solid lightgrey;
+    min-height: 100px;
+    display: flex;
+    flex-direction: row;
+    width: 600px;
+    margin-bottom: 40px;
+}
+
+.contact-options {
+    width: 30%;
+    border-right: 0.5px solid lightgrey;
+    box-sizing: border-box;
+}
+
+.contact-option {
+    width: 80%;
+    margin-left: 10%;
+    background-color: red;
+    text-align: center;
+    background-color: rgba(200,100,20,0.4);
+    border-radius: 4px;
+    margin-top: 20px;
+    font-size: 90%;
+}
+
+.contact-option:hover {
+    background-color: rgba(200,100,20,0.7);
+    cursor: pointer;
+}
+
+.contact-form {
+    width: 70%;
+}
+
+.input-holder {
+    width: 80%;
+    margin-left: 10%;
+    border: 0.5px solid lightgrey;
+    margin-top: 20px;
+    height: 30px;
+    position: relative;
+}
+
+.input-holder.invalid-input,
+.input-holder.textarea.invalid-input {
+    border: 0.5px solid red;
+}
+
+.input-holder.textarea {
+    width: 80%;
+    margin-left: 10%;
+    border: 0.5px solid lightgrey;
+    margin-top: 20px;
+    height: 70px;
+}
+
+.input-holder > textarea {
+    height: 80%;
+    margin-top: 10px;
+}
+
+textarea {
+    resize: none;
+}
+
+.contact-input {
+    border: none;
+    outline: none;
+    width: 96%;
+    height: 100%;
+    margin-left: 2%;
+    font-family: "Overpass";
+}
+
+.contact-submit {
+    margin-bottom: 20px;
+    background-color: rgba(20,100,240,0.3);
+    transition: all .2s;
+    -webkit-transition: all .2s;
+}
+
+.contact-submit > .input-title {
+    font-weight: 700;
+}
+
+.contact-submit:not(.submitted):hover {
+    background-color: rgba(20,240,100,0.7);
+    cursor: pointer;
+}
+
+.contact-boat h2 {
+    margin-top: 10px;
+}
+
+.input-title {
+    font-family: "Overpass";
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+    font-size: 80%;
+    pointer-events: none;
+    transition: all .2s;
+    -webkit-transition: all .2s;
+}
+
+.contact-input:focus ~ .input-title,
+.contact-input:valid ~ .input-title {
+    top: 0;
+    background-color: white;
+}
+
+
+
+
+.menu-options-wrapper {
+    position: absolute;
+    right: 20px;
+    top: 0;
+}
+
+.menu-option {
+    float: right;
+    clear: none;
+    font-size: 120%;
+    font-weight: 700;
+    margin-right: 40px;
+    margin-top: 40px;
+    transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+}
+
+
+.control-panel {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 240px;
+    height: calc(100% - 83px);
+    border-right: 3px solid black;
+    transition: all .2s;
+    -webkit-transition: all .2s;
+    overflow-x: visible;
+    overflow-y: scroll;
+    z-index: 101;
+    background-color: white;
+}
+
+
+
+.control-panel-ruler {
+    width: 90%;
+    height: 1px;
+    margin-left: 5%;
+    clear: both;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    background-color: black;
+}
+
+.content {
+    background-color: white;
+    width: 600px;
+    position: relative;
+    left: calc(50% + 120px);
+    transform: translateX(-50%);
+    -webkit-transform: translateX(-50%);
+    top: 20px;
+    border: 0.5px solid rgba(150,150,150,0.8);
+    box-shadow: 2px 2px 1px 1px grey;
+    margin-bottom: 50px;
+}
+
+.content.shifted {
+    left: calc(50% + 120px);
+}
+
+@media (max-width: 860px) {
+    
+    h1 {
+        margin-left: 0;
+    }
+    
+    .content {
+        left: calc(50%);
+    }
+    
+    .control-panel.collapsed {
+        width: 40px;
+        background-image: url("../assets/icons/control/settings.svg");
+        background-size: 26px 26px;
+        background-position: 6px 6px;
+        background-repeat: no-repeat;
+        overflow: hidden;
+    }
+    
+    .control-panel.collapsed:hover {
+        cursor: pointer;
+    }
+    
+    .control-panel.collapsed * {
+        display: none;
+    }
+    
+    #screen {
+        display: block !important;
+    }
+}
+
+
+.preview-wrapper {
+    width:425px;
+    height:550px;
+    margin-left: 50%;
+    margin-top: 10px;
+    transform: translateX(-50%);
+    -webkit-transform: translateX(-50%);
+    position: relative;
+    padding-bottom: 30px;
+    border: 1px solid black;
+    overflow: hidden;
+}
+
+.preview,
+.preview-loader {
+    width:100%;
+    height:100%;
+    position: absolute;
+    
+}
+
+.preview {
+    outline: none;
+}
+
+.preview-loader {
+    transition: all .2s;
+    -webkit-transition: all .2s;
+    pointer-events: none;
+}
+
+.loading .preview-loader {
+    background-color: white;
+    background-image: url("../assets/icons/control/loading.gif");
+    background-position: center 20px;
+    background-repeat: no-repeat;
+}
+
+.loaded .preview-loader {
+    opacity: 0.0;
+}
+
+.preview-wrapper {
+    margin-bottom: 30px;
+}
+
+
+.icon {
+    position: relative;
+    height: 40px;
+    transition: all .3s ease-in-out;
+    -webkit-transition: all .3s ease-in-out;
+    overflow: hidden;
+    background-position: 10px 10px;
+    background-size: 20px 20px;
+    background-repeat: no-repeat;
+}
+
+.icon:last-child {
+    border-bottom: 4px solid black;
+}
+
+
+.icon.title-icon {
+    border-bottom: 3px solid black;
+}
+
+.menu-wrapper.collapsed .icon:not(.title-icon) {
+    height: 0;
+    border: none;
+}
+
+.menu-wrapper {
+    overflow-y: scroll;
+}
+
+.icon-title {
+    font-family: 'Overpass';
+    position: absolute;
+    left: 40px;
+    top: 50%;
+    transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+}
+
+:not(.title-icon) > .icon-title {
+    left: 60px;
+    font-size: 90%;
+}
+
+.icon:hover,
+.button:hover {
+    cursor: pointer;
+    background-color: rgba(20,200,100,0.6);
+}
+
+.icon.selected,
+.button.selected {
+    background-color: rgba(20,200,100,0.8);
+}
+
+.title-icon:hover {
+    background-color: rgba(20,100,200,0.6);
+}
+
+
+
+
+
+.title-icon {background-image: url("../assets/icons/math/select.svg");}
+
+.addition-icon {background-image: url("../assets/icons/math/addition.svg");}
+.subtraction-icon {background-image: url("../assets/icons/math/subtraction.svg");}
+.multiplication-icon {background-image: url("../assets/icons/math/multiplication.svg");}
+.division-icon {background-image: url("../assets/icons/math/division.svg");}
+.comparison-icon {background-image: url("../assets/icons/math/comparison.svg");}
+.ratios-icon {background-image: url("../assets/icons/math/ratios.svg");}
+.rounding-icon {background-image: url("../assets/icons/math/rounding.svg");}
+.absolute-value-icon {background-image: url("../assets/icons/math/absolute-value.svg");}
+.exponentiation-icon {background-image: url("../assets/icons/math/exponentiation.svg");}
+.logarithms-icon {background-image: url("../assets/icons/math/logarithms.svg");}
+.integration-icon {background-image: url("../assets/icons/math/integration.svg");}
+.differentiation-icon {background-image: url("../assets/icons/math/differentiation.svg");}
+.summation-icon {background-image: url("../assets/icons/math/summation.svg");}
+.sketching-icon {background-image: url("../assets/icons/math/sketching.svg");}
+.systems-of-equations-icon {background-image: url("../assets/icons/math/systems-of-equations.svg");}
+
+.integer-icon {background-image: url("../assets/icons/math/integer.svg");}
+.decimal-icon {background-image: url("../assets/icons/math/decimal.svg");}
+.fraction-icon {background-image: url("../assets/icons/math/fraction.svg");}
+.percent-icon {background-image: url("../assets/icons/math/percent.svg");}
+.money-icon {background-image: url("../assets/icons/math/money.svg");}
+.date-icon {background-image: url("../assets/icons/math/date.svg");}
+.time-icon {background-image: url("../assets/icons/math/time.svg");}
+.datetime-icon {background-image: url("../assets/icons/math/datetime.svg");}
+.complex-icon {background-image: url("../assets/icons/math/complex.svg");}
+.angles-icon {background-image: url("../assets/icons/math/angles.svg");}
+.trigonometry-icon {background-image: url("../assets/icons/math/trigonometry.svg");}
+.geometry-2d-icon {background-image: url("../assets/icons/math/geometry-2d.svg");}
+.geometry-3d-icon {background-image: url("../assets/icons/math/geometry-3d.svg");}
+.variable-isolation-icon {background-image: url("../assets/icons/math/variable-isolation.svg");}
+
+.format-selector {
+    padding-bottom: 5px;
+}
+
+.format-option {
+    float: left;
+    clear: none;
+    margin-left: 10px;
+    margin-top: 20px;
+    transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+    font-size: 110%;
+}
+.format-example {
+    float: right;
+    clear: none;
+    text-align: right;
+    margin-right: 10px;
+    margin-top: 20px;
+    transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+    line-height: 16px;
+    font-size: 90%;
+}
+.button {
+    width: 90%;
+    margin-left: 5%;
+    height: 40px;
+    float: left;
+    clear: both;
+    margin-top: 4px;
+    border-radius: 4px;
+    font-family: 'Overpass';
+}
+
+.content > h2 {
+    margin-top: 10px;
+}
+
+
+h2 {
+    font-family: 'Overpass';
+    font-weight: 700;
+    font-size: 120%;
+    text-align: center;
+    margin-top: 0;
+}
+
+.make-worksheet {
+    background-color: rgba(20,150,250,0.7);
+    clear: both;
+    height: 40px;
+    border: 3px solid black;
+    width: 90%;
+    margin-left: 5%;
+    border-radius: 5px;
+    box-sizing: border-box;
+    position: relative;
+    top: 20px;
+    margin-bottom: 30px;
+}
+
+.make-worksheet:hover {
+    cursor: pointer;
+    background-color: rgba(20,100,250,1.0);
+}
+
+.button-title {
+    text-align: center;
+    font-size: 120%;
+    margin-top: 17px;
+    font-weight: 700;
+    transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+}
+
+.range-wrapper {
+    width: 90%;
+    margin-left: 5%;
+    clear: both;
+    margin-top: 5px;
+    position: relative;
+}
+
+.range-extremum-wrapper {
+    width: 50%;
+    float: left; clear: none; margin: 0;
+}
+
+.num-problems {
+    margin-left: 50%;
+    transform: translateX(-50%);
+    -webkit-transform: translateX(-50%);
+}
+
+.range-extremum-wrapper input {
+    width: 80%;
+    margin: 0;
+    outline: none;
+    margin-left: 10%;
+    height: 20px;
+    font-family: "Overpass";
+    text-align: center;
+    font-size: 100%;
+}
+
+.range-helper-text {
+    font-size: 70%;
+    text-align: center;
+}
+
+.decimal-point {
+    position: absolute;
+    top: 8px;
+}
+
+.boolean-wrapper,
+.option-wrapper {
+    float: left;
+    clear: both;
+    width: 90%;
+    margin-left: 5%;
+    top: 5px;
+    margin-bottom: 5px;
+    position: relative;
+}
+
+.boolean-button {
+    width: 30px;
+    height: 30px;
+    border-radius: 4px;
+    background-size: 70% 70%;
+    background-position: center center;
+    background-repeat: no-repeat;
+    transition: all .1s;
+    -webkit-transition: all .1s;
+}
+
+.boolean-button:hover {
+    cursor: pointer;
+}
+
+.boolean-button[data-value=true] {
+    background-color: rgba(20,220,120,0.9);
+    background-image: url("../assets/icons/control/checked.png");
+}
+
+.boolean-button[data-value=false] {
+    background-color: rgba(220,20,20,0.9);
+    background-image: url("../assets/icons/control/unchecked.png");
+}
+
+.boolean-wrapper h3 {
+    float: left;
+    clear: none;
+    margin-top: 15px;
+    transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+    font-family: 'Overpass';
+    font-weight: 300;
+}
+
+.boolean-wrapper .boolean-button {
+    float: right;
+    clear: none;
+}
+
+#screen {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: rgba(0,0,0,0.15);
+    top: -100%;
+    z-index: 99;
+    display: none;
+}
+    
+.control-panel:not(.collapsed) ~ #screen {
+    top: 0;
+}
+
+.control-panel:not(.collapsed) ~ #screen:hover {
+    cursor: pointer;
+}
+
+
+
+
+.kingdom-wrapper {
+    width: 80%;
+    margin-left: 10%;
+    position: relative;
+    height: 240px;
+    margin-top: 120px;
+}
+
+.kingdom-card {
+    width: 30%;
+    height: 100%;
+    float: left;
+    clear: none;
+    transition: all .2s;
+    -webkit-transition: all .2s;
+    box-sizing: border-box;
+}
+
+.kingdom-card.common-core {
+    background-color: rgba(200,100,20,0.7);
+}
+.kingdom-card.test-prep {
+    background-color: rgba(60,180,60,0.7);
+}
+.kingdom-card.general-math {
+    background-color: rgba(20,100,200,0.7);
+}
+.kingdom-card.common-core:hover,
+.kingdom-card.common-core.selected {
+    background-color: rgba(200,100,20,1.0);
+}
+.kingdom-card.test-prep:hover,
+.kingdom-card.test-prep.selected {
+    background-color: rgba(60,180,60,1.0);
+}
+.kingdom-card.general-math:hover,
+.kingdom-card.general-math.selected {
+    background-color: rgba(20,100,200,1.0);
+}
+
+.kingdom-card:hover,
+.kingdom-card.selected {
+    cursor: pointer;
+    border-bottom: 8px solid grey;
+}
+
+.kingdom-card:not(:first-child) {
+    margin-left: 5%;
+}
+
+.kingdom-card-title {
+    font-family: "Overpass";
+    font-weight: 700;
+    text-align: center;
+    margin: 0;
+    font-size: 220%;
+    margin-top: 120px;
+    transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+}
+
+
+
+.phylum-wrapper {
+    width: 80%;
+    margin-left: 10%;
+    margin-top: 20px;
+    display: none;
+}
+
+.phylum-wrapper.selected {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}
+
+.phylum-card {
+    width: 15%;
+    height: 30px;
+    background-color: rgba(160,160,160,0.6);
+    float: left;
+    clear: none;
+    margin-top: 15px;
+    transition: all .2s;
+    -webkit-transition: all .2s;
+}
+
+.phylum-card:not(:nth-child(6n)) {
+    margin-right: 2%;
+}
+
+.phylum-card:hover,
+.phylum-card.selected {
+    cursor: pointer;
+    background-color: rgba(160,160,160,1.0);
+}
+
+.phylum-card-title {
+    text-align: center;
+    position: relative;
+    margin: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+}
+
+
+.competency-holder {
+    width: 90%;
+    margin-left: 10%;
+    font-size: 90%;
+}
+
+.class-wrapper {
+    width: 80%;
+    margin-left: 10%;
+    margin-top: 30px;
+    font-size: 120%;
+    padding-bottom: 40px;
+    color: black;
+}
+
+.class-wrapper:hover {
+    cursor: pointer;
+}
+
+.order-wrapper {
+    font-family: 'Overpass';
+    font-weight: 300;
+    overflow: hidden;
+    margin-left: 10%;
+    
+}
+
+.order {
+    transition: all .2s;
+    -webkit-transition: all .2s;
+    height: 0;
+}
+
+.list-item-link {
+    color: rgba(20,100,200,1.0) !important;
+    text-decoration: underline !important;
+}
+
+.class-header {
+    color: rgba(20,100,200,1.0) !important;
+}
+
+.class-holder {
+    margin-bottom: 20px;
+}
+
+.class-holder.selected .order {
+    height: 20px;
+}
+
+.class-holder.selected .order:last-child {
+    margin-bottom: 20px;
+}
+
+

@@ -1,0 +1,145 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+    <head>
+        
+        <link href="https://fonts.googleapis.com/css?family=Overpass:300,400,700" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="../stylesheets/main_styles.css">
+        
+        <script>
+            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+            })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+            
+            ga('create', 'UA-106202537-1', 'auto');
+            ga('send', 'pageview');
+        
+        </script>
+        
+    </head>
+    <body>
+        
+        <section class="contact-boat">
+            <div class="contact-options">
+                <h2>Contact About:</h2>
+                <div class="contact-option" data-subject-association="I have a suggestion for a new worksheet">
+                    <p class="contact-option-text">Suggestion</p>
+                </div>
+                <div class="contact-option" data-subject-association="I found a bug in an existing worksheet">
+                    <p class="contact-option-text">Bug Fix</p>
+                </div>
+                <div class="contact-option" data-subject-association="General stuff">
+                    <p class="contact-option-text">Question</p>
+                </div>
+            </div>
+            <div class="contact-form">
+                <h2>Your Info:</h2>
+                <div class="input-holder">
+                    <input class="contact-input" type="text" id="name" placeholder="" required="required"/>
+                    <p class="input-title">Your Name</p>
+                </div>
+                <div class="input-holder">
+                    <input class="contact-input" type="text" id="email" placeholder="" required="required"/>
+                    <p class="input-title">Your Email</p>
+                </div>
+                <div class="input-holder">
+                    <input class="contact-input" type="text" id="subject" placeholder="" required="required"/>
+                    <p class="input-title">Message Subject</p>
+                </div>
+                <div class="input-holder textarea">
+                    <textarea class="contact-input" type="text" id="message" placeholder="" required="required"></textarea>
+                    <p class="input-title">Message</p>
+                </div>
+                <div class="input-holder contact-submit" id="contact-submit">
+                    <div class="submit-button" id="submit"></div>
+                    <p class="input-title" id="submit-title">Submit</p>
+                </div>
+            </div>
+        </section>
+        
+        <header class="header" id="header"></header>
+
+        <script
+            src="https://code.jquery.com/jquery-3.2.1.min.js"
+            integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+            crossorigin="anonymous">
+        </script>
+        <script src="../scripts/controllers.js"></script>
+        
+        <script>$("#header").load("../templates/navBar.html");</script>
+        <script>$("#control-panel").load("../templates/controlPanel.html");</script>
+        
+        <script src="../scripts/controllers.js"></script>
+        
+        
+        <script>
+            
+            function validate_email(email) {
+                var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+                return re.test(email);
+            }
+        
+            $(".contact-option").click(function() {
+                $("#subject").val($(this).attr("data-subject-association"))
+                $("#subject").parent().removeClass("invalid-input");
+            });
+            
+            $(".contact-input").focus(function() {
+                $(this).parent().removeClass("invalid-input");
+            });
+            
+            $(".contact-input").blur(function() {
+                $(this).val($(this).val().trim());
+            });
+            
+            $("#contact-submit").click(function() {
+                $(".contact-input:not(:valid)").parent().addClass("invalid-input");
+                
+                var name = $("#name").val().trim(),
+                    email = $("#email").val().trim(),
+                    subject = $("#subject").val().trim(),
+                    message = $("#message").val().trim(),
+                    error_message = "";
+                    
+                if (name == "" || email == "" || subject == "" || message == "") {
+                    $("#submit-title").html("I need some more info.");
+                    return false;
+                } else if (!validate_email(email)) {
+                    $("#email").parent().addClass("invalid-input");
+                    $("#submit-title").html("Please provide a valid email address.");
+                    return false;
+                } else {
+                    $("#contact-submit").addClass("submitting");
+                    $("#submit-title").html("Working...");
+                    
+                    $.ajax({
+                        url: "../scripts/mail.php",
+                        method: "GET",
+                        data: {
+                            name: name,
+                            email: email,
+                            subject: subject,
+                            message: message
+                        },
+                        success: function(e) {
+                            if (e == "s") {
+                                $("#contact-submit").addClass("submitted");
+                                $("#contact-submit").removeClass("submitting");
+                                $("#submit-title").html("Success!! We'll get back to you shortly.");
+                            } else {
+                                $("#contact-submit").addClass("failed");
+                                $("#contact-submit").removeClass("submitting");
+                                $("#submit-title").html("Message failed!! Give it another shot.");
+                            }
+                        },
+                        error: function() {
+                            $("#contact-submit").addClass("failed");
+                            $("#contact-submit").removeClass("submitting");
+                            $("#submit-title").html("Message failed!! Give it another shot.");
+                        }
+                    });
+                }
+            });
+        </script>
+    </body>
+</html>

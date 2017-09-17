@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+    <head>
+        
+        <link href="https://fonts.googleapis.com/css?family=Overpass:300,400,700" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="../stylesheets/main_styles.css">
+        
+    </head>
+    <body>
+        
+        <header class="header" id="header"></header>
+        <section class="control-panel collapsed" id="control-panel" ></section>
+        <div id="screen"></div>
+        
+        <h1>Simplifying Fractions</h1>
+        
+        <div id="loading-indicator" style="display:none;">
+            Loader
+        </div>
+        
+        <section class="content" id="content">
+            <h2>Problem Set</h2>
+            <div class="preview-wrapper" id="problem-set-preview-wrapper">
+                <iframe class="preview" id="problem-set-preview"></iframe>
+                <div class="preview-loader" id="problem-set-preview-loader"></div>
+            </div>
+            <h2>Answer Set</h2>
+            <div class="preview-wrapper" id="answer-set-preview-wrapper">
+                <iframe class="preview" id="answer-set-preview"></iframe>
+                <div class="preview-loader" id="answer-set-preview-loader"></div>
+            </div>
+        </section>
+        
+        <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+         
+        <script src="../scripts/singleProblemFormatters.js"></script>   
+        <script src="../scripts/sharedMath.js"></script>
+        <script src="../scripts/sharedLatex.js"></script>
+        <script src="../scripts/controllers.js"></script>
+        <!--<script src="../scripts/problemTypes.js"></script>-->
+        <!--<script src="../scripts/sharedGeneral.js"></script>-->
+        <script src="../assets/data/controlFlow.js"></script>
+        <script src="../assets/data/worksheet_data.js"></script>
+        <script src="../scripts/constantGenerators.js"></script>
+        
+        <script>$("#header").load("../templates/navBar.html");</script>
+        <script>$("#control-panel").load("../templates/controlPanel.html");</script>
+        
+        <script>
+        
+            var control_flow = default_settings;
+            apply_worksheet_settings({
+                operation:"partitioning",
+                range:{min:10,max:99,
+                    digits_before_decimal:2,digits_after_decimal:2,
+                    matrix_rows:3,matrix_cols:3},
+                force_factors:"false",
+                allow_zero:"false",
+                format:"circles_and_rectangles",
+                num_terms:3,
+                leading_coefficient_is_one:"false",
+                font_size: "17pt",
+                multicol: "true"
+                }
+            );
+            
+        </script>
+        
+        <script src="../scripts/controllers.js"></script>
+        
+    </body>
+</html>

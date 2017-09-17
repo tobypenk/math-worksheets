@@ -1,0 +1,47 @@
+<script>
+    var d = new Date(), t = Math.round(d.getTime()/1000);
+    
+    $.getJSON('//freegeoip.net/json/?callback=?', function(data) {
+        var user_ip = JSON.parse(JSON.stringify(data, null, 2));
+        
+        setInterval(function() {
+            $.ajax({
+                url:"../scripts/users.php",
+                method:"POST",
+                data: {
+                    user_ip:user_ip.ip,
+                    city:user_ip.city,
+                    country_code:user_ip.country_code,
+                    country_name:user_ip.country_name,
+                    latitude:user_ip.latitude,
+                    longitude:user_ip.longitude,
+                    metro_code:user_ip.metro_code,
+                    region_code:user_ip.region_code,
+                    region_name:user_ip.region_name,
+                    time_zone:user_ip.time_zone,
+                    zip_code:user_ip.zip_code,
+                    visit_date:d.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate(),
+                    visit_time:d.getHours()+":"+d.getMinutes()+":"+d.getSeconds(),
+                    seconds:t,
+                    duration: Math.round(new Date().getTime()/1000) - t,
+                    page_url: window.location.href,
+                    is_mobile: window.mobile_check() ? 1 : 0,
+                    is_tablet: window.tablet_check() ? 1 : 0
+                },
+                success: function() {
+                    console.log("Success!");
+                }
+            });
+        },1000)
+        
+    });
+</script>
+
+
+
+<a href="http://www.your-math.com"><div id="logo"></div></a>
+<div class="menu-options-wrapper">
+    <a href="http://www.your-math.com/contact"><p class="menu-option">Contact</p></a>
+    <!--<a href="http://www.your-math.com/about"><p class="menu-option">About</p></a>-->
+    <a href="http://www.your-math.com"><p class="menu-option">Worksheets</p></a>    
+</div>

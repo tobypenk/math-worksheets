@@ -1,0 +1,221 @@
+
+<!--
+<div class="menu-wrapper operators-wrapper collapsed" data-control-flow-attr="operation" id="operators-wrapper">
+    <div class="icon title-icon addition-icon"><p class="icon-title">Addition</p></div>
+    <div class="options-wrapper operator">
+        <div class="icon addition-icon" data-value="addition"><p class="icon-title">Addition</p></div>
+        <div class="icon subtraction-icon" data-value="subtraction"><p class="icon-title">Subtraction</p></div>
+        <div class="icon multiplication-icon" data-value="multiplication"><p class="icon-title">Multiplication</p></div>
+        <div class="icon division-icon" data-value="division"><p class="icon-title">Division</p></div>
+        
+        <div class="icon comparison-icon" data-value="comparison"><p class="icon-title">Comparison</p></div>
+        <div class="icon ratios-icon" data-value="ratios"><p class="icon-title">Ratios</p></div>
+        <div class="icon rounding-icon" data-value="rounding"><p class="icon-title">Rounding</p></div>
+        <div class="icon absolute-value-icon" data-value="absolute_value"><p class="icon-title">Absolute Value</p></div>
+        <div class="icon exponentiation-icon" data-value="exponentiation"><p class="icon-title">Exponentiation</p></div>
+        <div class="icon logarithms-icon" data-value="logarithms"><p class="icon-title">Logarithms</p></div>
+        <div class="icon summation-icon" data-value="summation"><p class="icon-title">Summation</p></div>
+        <div class="icon sketching-icon" data-value="sketching"><p class="icon-title">Sketching</p></div>
+        <div class="icon variable-isolation-icon" data-value="variable_isolation"><p class="icon-title">Variable Isolation</p></div>
+        
+        <div class="icon systems-of-equations-icon" data-value="systems_of_equations"><p class="icon-title">Systems of Equations</p></div>
+
+        <div class="icon integration-icon" data-value="integration"><p class="icon-title">Integration</p></div>
+        <div class="icon differentiation-icon" data-value="differentiation"><p class="icon-title">Differentiation</p></div>
+        <div class="icon trigonometry-icon" data-value="trigonometry"><p class="icon-title">Trigonometry</p></div>
+        
+    </div>
+</div>
+-->
+
+
+<!--
+<div class="menu-wrapper data-types-wrapper collapsed" data-control-flow-attr="data_type" id="data-types-wrapper">
+    <div class="icon title-icon integer-icon"><p class="icon-title">Integer</p></div>
+    <div class="options-wrapper data-type" id="test">
+        <div class="icon integer-icon selected" data-value="integer"><p class="icon-title">Integer</p></div>
+        <div class="icon decimal-icon" data-value="decimal"><p class="icon-title">Decimal</p></div>
+        <div class="icon fraction-icon" data-value="fraction"><p class="icon-title">Fraction</p></div>
+        
+        <div class="icon percent-icon" data-value="percent" id="test"><p class="icon-title">Percent</p></div>
+        <div class="icon money-icon" data-value="money"><p class="icon-title">Money</p></div>
+        <div class="icon date-icon" data-value="date"><p class="icon-title">Date</p></div>
+        <div class="icon time-icon" data-value="time"><p class="icon-title">Time</p></div>
+        <div class="icon datetime-icon" data-value="datetime"><p class="icon-title">Date + Time</p></div>
+        <div class="icon complex-icon" data-value="complex"><p class="icon-title">Complex</p></div>
+        <div class="icon angles-icon" data-value="angle"><p class="icon-title">Angle</p></div>
+        <div class="icon variable-icon" data-value="variable"><p class="icon-title">Variable</p></div>
+        <div class="icon variable-icon" data-value="polynomial"><p class="icon-title">Polynomial</p></div>
+        <div class="icon geometry-2d-icon" data-value="geometry_2d"><p class="icon-title">2d Geometry</p></div>
+        <div class="icon geometry-3d-icon" data-value="geometry_3d"><p class="icon-title">3d Geometry</p></div>
+        
+    </div>
+</div>
+-->
+
+<!--<div class="option-wrapper format-selector" data-control-flow-attr="format">
+    <h2>How Many Problems?</h2>
+    <div class="range-wrapper">
+        <div class="range-extremum-wrapper minimum">
+            <input class="range-extremum-input minimum" data-control-flow-attr="min" id="range-minimum"/>
+            <p class="range-helper-text">Minimum</p>
+        </div>
+        <div class="range-extremum-wrapper maximum">
+            <input class="range-extremum-input maximum" data-control-flow-attr="max" id="range-maximum" />
+            <p class="range-helper-text">Maximum</p>
+        </div>
+    </div>
+</div>
+<div class="control-panel-ruler"></div>
+-->
+
+
+
+
+<!--
+<div class="option-wrapper format-selector" data-control-flow-attr="format">
+    <h2>Digits</h2>
+    <div class="range-wrapper">
+        <div class="range-extremum-wrapper minimum">
+            <input class="range-extremum-input minimum" data-control-flow-attr="before_decimal" id="range-minimum-digits"/>
+            <p class="range-helper-text">Before Decimal</p>
+        </div>
+        <span class="decimal-point">.</span>
+        <div class="range-extremum-wrapper maximum">
+            <input class="range-extremum-input maximum" data-control-flow-attr="after_decimal" id="range-maximum-digits" />
+            <p class="range-helper-text">After Decimal</p>
+        </div>
+    </div>
+</div>
+-->
+
+
+<div class="worksheet-options-wrapper control-panel-section">
+    <h2>Worksheet</h2>
+    <div class="option-wrapper boolean-wrapper has-header-selector">
+        <h3>Header?</h3>
+        <div class="boolean-button" data-value=true data-control-flow-attr="has_header"></div>
+    </div>
+    <div class="option-wrapper boolean-wrapper has-challenge-problem">
+        <h3>Challenge Problem?</h3>
+        <div class="boolean-button" data-value=true data-control-flow-attr="challenge_problem"></div>
+    </div>
+</div>
+<div class="control-panel-ruler"></div>
+
+<div class="option-wrapper format-selector" data-control-flow-attr="format">
+    <h2>Number of Problems</h2>
+        
+    <div class="range-wrapper">
+        <div class="range-extremum-wrapper num-problems">
+            <input class="range-extremum-input singleton" id="num-problems"/>
+            <p class="range-helper-text" id="num-problems-helper-text"></p>
+        </div>
+    </div>
+</div>
+<div class="control-panel-ruler"></div>
+
+
+
+<!--
+<div class="content-options-wrapper control-panel-section">
+    <h2>Options</h2>
+    <div class="option-wrapper boolean-wrapper allow-zero-selector">
+        <h3>Allow zero?</h3>
+        <div class="boolean-button" data-value=true id="allow_zero" data-control-flow-attr="allow_zero"></div>
+    </div>
+    <div class="option-wrapper boolean-wrapper allow-one-selector">
+        <h3>Allow one?</h3>
+        <div class="boolean-button" data-value=true id="allow_one" data-control-flow-attr="allow_one"></div>
+    </div>
+    
+    <div class="option-wrapper boolean-wrapper force-factors-selector">
+        <h3>Force factors?</h3>
+        <div class="boolean-button" data-value=false id="force_factors" data-control-flow-attr="force_factors"></div>
+    </div>
+    
+    <div class="option-wrapper boolean-wrapper top-heavy-selector">
+        <h3>Larger Number First?</h3>
+        <div class="boolean-button" data-value=false id="force_top_heavy" data-control-flow-attr="force_top_heavy"></div>
+    </div>
+    
+    <div class="option-wrapper boolean-wrapper allow_unsolvable-selector">
+        <h3>Allow unsolvable?</h3>
+        <div class="boolean-button" data-value=false id="allow_unsolvable" data-control-flow-attr="allow_unsolvable"></div>
+    </div>
+</div>
+<div class="control-panel-ruler"></div>
+-->
+
+<!--
+<div class="option-wrapper format-selector control-panel-section" data-control-flow-attr="format">
+    <h2>Format</h2>
+    <div class="button-menu-wrapper">
+        <div class="button selected" data-value="tall">
+            <p class="format-option">Tall</p>
+            <div class="format-example">&nbsp;123<br><span style="text-decoration:underline;">+456</span></div>
+        </div>
+        <div class="button" data-value="wide">
+            <p class="format-option">Wide</p>
+            <div class="format-example">123 + 456</div>
+        </div>
+        <div class="button" data-value="special-division">
+            <p class="format-option">Long Division</p>
+            <div class="format-example">
+                123<span style="font-size:90%;">|</span><span style="text-decoration:overline;margin-left:-2.5px;">&nbsp;456</span>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="control-panel-ruler"></div>
+-->
+
+
+
+<div class="make-worksheet" id="make-worksheet">
+    <p class="button-title">Generate Worksheet</p>
+</div>
+
+
+
+<script>
+
+    var grid = optimal_grid_size();
+    $("#num-problems").val(grid.cols * grid.rows);
+    $("#num-problems-helper-text").html("Max " + grid.cols * grid.rows);
+    $("#num-problems").blur(function() {
+        if ($("#num-problems").val() > grid.cols * grid.rows || $("#num-problems").val() < 1) {
+            $("#num-problems").val(grid.cols * grid.rows);
+        }
+        control_flow.num_problems_override = $("#num-problems").val();
+    });
+    
+    var icons = document.getElementsByClassName("icon");
+    for (var i in icons) {icons[i].onclick = select_icon;}
+    
+    var menus = document.getElementsByClassName("title-icon");
+    for (var i in menus) {menus[i].onclick = expand_menu;}
+    
+    var ranges = document.getElementsByClassName("range-extremum-input");
+    for (var i in ranges) {ranges[i].onblur = blur_range_input;}
+    
+    var buttons = document.getElementsByClassName("button");
+    for (var i in buttons) {buttons[i].onclick = select_button;}
+    
+    var bools = document.getElementsByClassName("boolean-button");
+    for (var i in bools) {bools[i].onclick = boolean_button_click;}
+
+    document.getElementById("make-worksheet").onclick = compile_latex_on_server;
+    document.getElementById("control-panel").onclick = function() {
+    
+        if (this.classList.contains("collapsed")) {
+            this.classList.remove("collapsed");
+        }
+    }
+    
+    document.getElementById("screen").onclick = function() {
+        document.getElementById("control-panel").classList.add("collapsed");
+    }
+    
+    //generate_worksheet(control_flow.problem_type,control_flow.problem_subtype);
+</script>
