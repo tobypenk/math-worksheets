@@ -26,6 +26,10 @@
 				difference between a and b (float or int depending on input type)
 		*/
 		
+		if (!is_numeric($a) | !is_numeric($b)) {
+			return "type error in arithmetic_subtraction";
+		}
+		
 	    return $a - $b;
 	}
 	
@@ -108,15 +112,6 @@
 	    }
 	    return false;
 	}
-	
-	
-	echo arithmetic_subtraction(5,2);
-	echo arithmetic_addition(5,2);
-	
-	
-	
-	assert(arithmetic_subtraction(5,2) == 3);
-	
 	
 	
 	
