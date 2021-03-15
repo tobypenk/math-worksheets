@@ -46,6 +46,10 @@
 				sum of a and b (float or int depending on input type)
 		*/
 		
+		if (!is_numeric($a) | !is_numeric($b)) {
+			return "type error in arithmetic_addition";
+		}
+		
 	    return $a + $b;
 	}
 	
@@ -62,10 +66,14 @@
 				product of a and b (float or int depending on input type)
 		*/
 		
+		if (!is_numeric($a) | !is_numeric($b)) {
+			return "type error in arithmetic_multiplication";
+		}
+		
 	    return $a * $b;
 	}
 	
-	function arithmetic_division($a,$b) {
+	function arithmetic_division_with_remainder($a,$b) {
 		
 		/*
 			wrapper for performing division with remainders
@@ -78,12 +86,21 @@
 				a divided by b remainder r (string)
 		*/
 		
+		if (!is_integer($a) | !is_integer($b)) {
+			return "type error in arithmetic_division_with_remainder";
+		}
+		
+		if ($b == 0) {
+			return "cannot divide by zero (in arithmetic_division_with_remainder)";
+		}
+		
 	    $r = $a % $b;
 	    $d = ($a - $r) / $b;
-	    return $d + ($r == 0 ? "" : "r" + $r);
+	    
+	    return $d . ($r == 0 ? "" : ("r" . $r));
 	}
 	
-	function arithmetic_decimal_division($a,$b) {
+	function arithmetic_division_decimal($a,$b) {
 		
 		/*
 			wrapper for performing decimal division (with no remainders)
@@ -95,6 +112,14 @@
 			returns:
 				a divided by b (float or int depending on input type)
 		*/
+		
+		if (!is_numeric($a) | !is_numeric($b)) {
+			return "type error in arithmetic_division_decimal";
+		}
+		
+		if ($b == 0) {
+			return "cannot divide by zero (in arithmetic_division_decimal)";
+		}
 		
 	    return $a / $b;
 	}
@@ -115,8 +140,6 @@
 	
 	
 	
-	
-		
 	
 	/*
 	function unique_array(arr) {
