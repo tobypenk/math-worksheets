@@ -124,76 +124,114 @@
 	    return $a / $b;
 	}
 	
-	function arr_a_contains_element_b($a,$b) {
+	function get_complete_factor_array($n,$prefer_non_trivial=false,$positive_only=true) {
 		
 		/*
-			to be deprecated and replaced with in_array() builtin function
+			
+			returns all factors of a given integer
+			
+			parameters:
+				n (int): number for which to find factors
+				prefer_non_trivial: includes 1 and n if set to false
+				positive_only: includes negative factors if set to false
+				
+			returns:
+				array (int) containing the factors of n
+				
 		*/
+
+		if (gettype($n) != "integer") {
+			return "type error in get_complete_factor_array";
+		}
 		
-	    foreach ($a as $i) {
-	        if ($i == $b) {
-	            return true;
+		if ($n == 1) {
+			return [1];
+		} else if ($n == 0) {
+			return [];
+		}
+	    
+	    $total = [];
+	    $na = abs($n);
+	    
+	    for ($i=floor(sqrt($na)); $i>=2; $i--) {
+	        
+	        if ($na % $i == 0) {
+		        array_unshift($total, $i);
+		        $f = $na/$i;
+		        if ($i == $f) continue;
+		        array_push($total, $f);
 	        }
 	    }
-	    return false;
+	    
+	    if (!$prefer_non_trivial) {
+		    array_unshift($total, 1);
+		    array_push($total, $na);
+	    }
+	    
+	    if ($n < 0 & !$positive_only) {
+		    foreach ($total as $t) {
+			    array_unshift($total,-$t);
+		    }
+	    }
+	    
+	    return $total;
 	}
 	
 	
+	
+	
+	
+	
+	function multiply_polynomial_coefficients($p1,$p2) {
+		
+		/*
+			
+			performs polynomial multiplication
+			
+			parameters:
+				p1 (arr of numerics): array of polynomial coefficients in normal form (i.e., 2x^3 + 3x - 4 would be
+					[2,0,3,-4]
+				p2: (arr of numerics): array of polynomial coefficients in normal form
+				
+			returns:
+				array (numeric) representing product of polynomials in normal form
+			
+		*/
+		
+		foreach ($p1 as $test) {
+			if (!is_numeric($test)) return "type error in multiply_polynomial_coefficients";
+		}
+		
+		foreach ($p2 as $test) {
+			if (!is_numeric($test)) return "type error in multiply_polynomial_coefficients";
+		}
+	    
+	    $total = [];
+	    for ($i=0; $i<(count($p1) + count($p2) - 1); $i++) {
+	        array_push($total,0);
+	    }
+	    
+	    if (count($p1) > count($p2)) {
+	        $longer = $p1;
+	        $shorter = $p2;
+	    } else {
+	        $longer = $p2;
+	        $shorter = $p1;
+	    }
+	    
+	    for ($i=0; $i<count($longer); $i++) {
+	        for ($j=0; $j<count($shorter); $j++) {
+	            $total[$i+$j] += $longer[$i] * $shorter[$j];
+	        }
+	    }
+	    
+	    while ($total[0] == 0) array_shift($total);
+	    
+	    return $total;
+	}
 	
 	
 	/*
-	function unique_array(arr) {
-	    
-	    var total = [];
-	    for (var i in arr) {
-	        if (!arr_a_contains_element_b(total,arr[i])) {
-	            total.push(arr[i]);
-	        }
-	    }
-	    
-	    return total;
-	}
-	
-	function get_complete_factor_array(n,prefer_non_trivial) {
-	    
-	    var total = [1,n];
-	    for (var i=2; i<Math.ceil(Math.sqrt(n)); i++) {
-	        
-	        if (n % i == 0) {
-	            total.push(i,n/i);
-	        }
-	    }
-	    
-	    if (prefer_non_trivial && total.length > 2) {
-	        return total.filter(function(x) { return (x != 1 && x != n); });
-	    } else {
-	        return total;
-	    }
-	}
-	
-	function multiply_polynomial_coefficients(p1,p2) {
-	    
-	    var total = [];
-	    for (var i=0; i<(p1.length + p2.length - 1); i++) {
-	        total.push(0);
-	    }
-	    
-	    if (p1.length > p2.length) {
-	        longer = p1;
-	        shorter = p2;
-	    } else {
-	        longer = p2;
-	        shorter = p1;
-	    }
-	    
-	    for (i=0; i<longer.length; i++) {
-	        for (var j=0; j<shorter.length; j++) {
-	            total[i+j] += longer[i] * shorter[j];
-	        }
-	    }
-	    
-	    return total;
-	}
 	
 	function multiply_complex_numbers(c1,c2) {
 	    
@@ -664,5 +702,35 @@
 	
 	
 	
+	
+	/*
+		
+		to deprecate and replace with builtins
+	
+	function arr_a_contains_element_b($a,$b) {
+		
+
+		
+	    foreach ($a as $i) {
+	        if ($i == $b) {
+	            return true;
+	        }
+	    }
+	    return false;
+	}
+	
+	function unique_array(arr) {
+	    
+	    var total = [];
+	    for (var i in arr) {
+	        if (!arr_a_contains_element_b(total,arr[i])) {
+	            total.push(arr[i]);
+	        }
+	    }
+	    
+	    return total;
+	}
+	
+	*/
 	
 ?>

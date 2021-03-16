@@ -33,7 +33,6 @@
 	assert(arithmetic_division_with_remainder(null,2) == "type error in arithmetic_division_with_remainder");
 	assert(arithmetic_division_with_remainder(4.5,3.2) == "type error in arithmetic_division_with_remainder");
 	
-	
 	assert(arithmetic_division_decimal(6,3) == 2);
 	assert(arithmetic_division_decimal(13,2) == 6.5);
 	assert(arithmetic_division_decimal(14,2) == 7);
@@ -42,6 +41,23 @@
 	assert(arithmetic_division_decimal("a",2) == "type error in arithmetic_division_decimal");
 	assert(arithmetic_division_decimal(null,2) == "type error in arithmetic_division_decimal");
 	assert(round(arithmetic_division_decimal(4.5,1.5),5) == 3);
+	
+	assert(implode(",",get_complete_factor_array(12,false)) == "1,2,3,4,6,12");
+	assert(implode(",",get_complete_factor_array(12,true)) == "2,3,4,6");
+	assert(implode(",",get_complete_factor_array(1,true)) == "1");
+	assert(implode(",",get_complete_factor_array(0,true)) == "");
+	assert(implode(",",get_complete_factor_array(-10,false,false)) == "-10,-5,-2,-1,1,2,5,10");
+	
+	assert(implode(",",multiply_polynomial_coefficients([1,1],[1,1])) == "1,2,1");
+	assert(implode(",",multiply_polynomial_coefficients([1,1,1],[1,1,1])) == "1,2,3,2,1");
+	assert(implode(",",multiply_polynomial_coefficients([1,2],[1,2])) == "1,4,4");
+	assert(implode(",",multiply_polynomial_coefficients([0,2],[1,2])) == "2,4");
+	assert(implode(",",multiply_polynomial_coefficients([1,2],[1,0])) == "1,2,0");
+	assert(multiply_polynomial_coefficients(["a",1],[1,1]) == "type error in multiply_polynomial_coefficients");
+	assert(multiply_polynomial_coefficients([1,1],[1,"a"]) == "type error in multiply_polynomial_coefficients");
+	
+
+
 ?>
 
 
