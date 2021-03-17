@@ -177,11 +177,6 @@
 	    return $total;
 	}
 	
-	
-	
-	
-	
-	
 	function multiply_polynomial_coefficients($p1,$p2) {
 		
 		/*
@@ -198,13 +193,7 @@
 			
 		*/
 		
-		foreach ($p1 as $test) {
-			if (!is_numeric($test)) return "type error in multiply_polynomial_coefficients";
-		}
-		
-		foreach ($p2 as $test) {
-			if (!is_numeric($test)) return "type error in multiply_polynomial_coefficients";
-		}
+		if (!all_numeric($p1) | !all_numeric($p2)) return "type error in multiply_polynomial_coefficients";
 	    
 	    $total = [];
 	    for ($i=0; $i<(count($p1) + count($p2) - 1); $i++) {
@@ -230,72 +219,124 @@
 	    return $total;
 	}
 	
+	function multiply_complex_numbers($c1,$c2) {
+	    
+	    //var r_1, r_2, i_1, i_2;
+	    /*
+		    
+		    multiplies two complex numbers
+		    
+		    parameters:
+		    	c1: array of numerics representing the coefficients of the first number
+		    	c2: array of numerics representing the coefficients of the second number
+		    	arrays should be of the form [numeric_coefficient, complex_coefficient] and must be length 2.
+		    	
+		    returns:
+		    	2-length array of form [numeric_coefficient, complex_coefficient] representing the complex product
+		    
+		*/
+		
+		if (count($c1) != 2 | count($c2) != 2) return "input length error in multiply_complex_numbers";
+		
+		
+		if (!all_numeric($c1) | !all_numeric($c2)) return "type error in multiply_complex_numbers";
+	    
+	    $r_1 = $c1[0] * $c2[0];
+	    $r_2 = $c1[1] * $c2[1] * -1;
+	    
+	    $i_1 = $c1[0] * $c2[1];
+	    $i_2 = $c1[1] * $c2[0];
+	    
+	    return [$r_1 + $r_2, $i_1 + $i_2];
+	}
+	
+	function prime_factorization($n,$start=[]) {
+		
+		if (!is_integer($n)) return "type error in prime_factorization";
+	    
+	    if ($n == 1) return $start;
+	    if ($n < 0) return (prime_factorization(abs($n),[-1]));
+	    
+	    $i = 2;
+	    while ($i <= $n) {
+	        if ($n % $i == 0) {
+		        array_push($start, $i);
+	            return prime_factorization($n/$i,$start);
+	        }
+	        $i += 1;
+	    }
+	}
+	
+	function array_overlap($a1,$a2) {
+		
+		/*
+			
+			finds the distinct intersection of two arrays
+			note - if element i occurs twice in a1 and once in a2, or vice versa, it will appear once in the intersection.
+			if element i occurs twice in both arrays, it will appear twice in the intersection.
+			
+			parameters:
+				a1: array
+				a2: array
+				
+			returns:
+				array of elements in the distinct intersection of a1 and a2
+				
+		*/
+		
+	    
+	    $total = [];
+	    
+	    for ($i=0; $i<count($a1); $i++) {
+		    for ($j=0; $j<count($a2); $j++) {
+			    if ($a1[$i] == $a2[$j]) {
+				    array_push($total,array_splice($a2,$j,1)[0]);
+				    break;
+			    }
+		    }
+	    }
+	    
+	    return $total;
+	}
+	
+	function simplify_fraction($n_d_array) {
+		
+		/*
+			
+			reduces a fraction to simplest form (i.e., the form in which numerator and denominator share no factors)
+			
+			parameters:
+				n_d_array: 2-length array of ints
+				
+			returns:
+				2-length array representing the simplified fraction. 0th element is numerator; 1st element is denominator.
+			
+		*/
+		
+		if (count($n_d_array) != 2) return "input length error in simplify_fraction";
+		if (!all_integers($n_d_array)) return "type error in simplify_fraction";
+	    
+	    $n_pf = prime_factorization($n_d_array[0]);
+	    $d_pf = prime_factorization($n_d_array[1]);
+	    $common_factors = array_overlap($n_pf,$d_pf);
+	    
+	    foreach ($common_factors as $i) {
+	        $n_d_array[0] /= $i;
+	        $n_d_array[1] /= $i;
+	    }
+	    
+	    if ($n_d_array[1] < 0 && $n_d_array[0] > 0) {
+	        $n_d_array[0] *= -1;
+	        $n_d_array[1] *= -1;
+	    }
+	    
+	    return $n_d_array;
+	}
+	
+	
+	
 	
 	/*
-	
-	function multiply_complex_numbers(c1,c2) {
-	    
-	    var r_1, r_2, i_1, i_2;
-	    
-	    r_1 = c1[0] * c2[0];
-	    r_2 = c1[1] * c2[1] * -1;
-	    
-	    i_1 = c1[0] * c2[1];
-	    i_2 = c1[1] * c2[0];
-	    
-	    return [r_1 + r_2, i_1 + i_2];
-	}
-	
-	function prime_factorization(n,start) {
-	    
-	    if (start == undefined) start = [];
-	    if (n == 1) return start;
-	    if (n < 0 ) return (prime_factorization(Math.abs(n),[-1]));
-	    
-	    var i = 2;
-	    while (i <= n) {
-	        if (n % i == 0) {
-	            start.push(i);
-	            return prime_factorization(n/i,start);
-	        }
-	        i += 1;
-	    }
-	}
-	
-	function array_overlap(a1,a2) {
-	    
-	    var total = [];
-	    
-	    for (var i in a1) {
-	        for (var j in a2) {
-	            if (a1[i] == a2[j]) {
-	                total.push(a2.splice(j,1)[0]);
-	                break;
-	            }
-	        }
-	    }
-	    
-	    return total;
-	}
-	
-	function simplify_fraction(n_d_array) {
-	    
-	    n_pf = prime_factorization(n_d_array[0]);
-	    d_pf = prime_factorization(n_d_array[1]);
-	    var common_factors = array_overlap(n_pf,d_pf);
-	    
-	    for (i in common_factors) {
-	        n_d_array[0] /= common_factors[i];
-	        n_d_array[1] /= common_factors[i];
-	    }
-	    
-	    if (n_d_array[1] < 0 && n_d_array[0] > 0) {
-	        n_d_array[0] *= -1;
-	        n_d_array[1] *= -1;
-	    }
-	    
-	    return n_d_array;
-	}
 	
 	function arrays_are_equal(a1,a2) {
 	    
@@ -698,6 +739,51 @@
 	}
 	
 	*/
+	
+	
+	function all_numeric($arr) {
+		
+		/*
+			
+			test if all elements of an array are numeric
+			
+			parameters:
+				arr: an iterable
+				
+			returns:
+				bool: true if all numeric; otherwise, false
+			
+		*/
+		
+		foreach ($arr as $t) {
+			if (!is_numeric($t)) return false;
+		}
+		return true;
+	}
+	
+	function all_integers($arr) {
+		
+		/*
+			
+			test if all elements of an array are integers
+			
+			parameters:
+				arr: an iterable
+				
+			returns:
+				bool: true if all integers; otherwise, false
+			
+		*/
+		
+		foreach ($arr as $t) {
+			if (!is_integer($t)) return false;
+		}
+		return true;
+	}
+	
+	
+	
+	
 
 	
 	
@@ -732,5 +818,11 @@
 	}
 	
 	*/
+	
+	
+	
+	
+	
+	
 	
 ?>

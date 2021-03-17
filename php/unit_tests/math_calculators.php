@@ -56,7 +56,48 @@
 	assert(multiply_polynomial_coefficients(["a",1],[1,1]) == "type error in multiply_polynomial_coefficients");
 	assert(multiply_polynomial_coefficients([1,1],[1,"a"]) == "type error in multiply_polynomial_coefficients");
 	
+	assert(implode(",",multiply_complex_numbers([1,1],[1,1])) == "0,2");
+	assert(implode(",",multiply_complex_numbers([2,3],[4,5])) == "-7,22");
+	assert(implode(",",multiply_complex_numbers([5,-2],[-2,5])) == "0,29");
+	assert(implode(",",multiply_complex_numbers([0,0],[0,0])) == "0,0");
+	assert(implode(",",multiply_complex_numbers([4.5,1.5],[2.5,9.75])) == "-3.375,47.625");
+	assert(multiply_complex_numbers(["a",1.5],[2.5,9.75]) == "type error in multiply_complex_numbers");
+	assert(multiply_complex_numbers([4.5,1.5],[2.5,""]) == "type error in multiply_complex_numbers");
+	assert(multiply_complex_numbers([1.5],[2.5,""]) == "input length error in multiply_complex_numbers");
+	assert(multiply_complex_numbers([4.5,1.5],[]) == "input length error in multiply_complex_numbers");
+	assert(multiply_complex_numbers([4.5,1.5,3.5],[2.5,""]) == "input length error in multiply_complex_numbers");
+	
+	assert(implode(",",prime_factorization(5)) == "5");
+	assert(implode(",",prime_factorization(12)) == "2,2,3");
+	assert(implode(",",prime_factorization(120)) == "2,2,2,3,5");
+	assert(implode(",",prime_factorization(256)) == "2,2,2,2,2,2,2,2");
+	assert(is_null(prime_factorization(0)));
+	assert(implode(",",prime_factorization(1234567890)) == "2,3,3,5,3607,3803");
+	assert(prime_factorization("x") == "type error in prime_factorization");
+		
+	assert(implode(",",array_overlap([],[])) == "");
+	assert(implode(",",array_overlap([],[0])) == "");
+	assert(implode(",",array_overlap([0],[])) == "");
+	assert(implode(",",array_overlap([1,2,3],[4,5,6])) == "");
+	assert(implode(",",array_overlap([1,2,3],[3,4,5])) == "3");
+	assert(implode(",",array_overlap([1,2,3,3],[3,4,5])) == "3");
+	assert(implode(",",array_overlap([1,2,3],[3,3,4,5])) == "3");
+	assert(implode(",",array_overlap([1,2,3,3],[3,3,4,5])) == "3,3");
+	assert(implode(",",array_overlap([1,2,3,3],[1,2,3,3])) == "1,2,3,3");
+	assert(implode(",",array_overlap([1,2,3,"a"],[1,2,3,"b"])) == "1,2,3");
+	assert(implode(",",array_overlap([1,2,3,"a"],[1,2,3,"a"])) == "1,2,3,a");
+	
+	assert(simplify_fraction([]) == "input length error in simplify_fraction");
+	assert(simplify_fraction([1]) == "input length error in simplify_fraction");
+	assert(simplify_fraction([1,2,3]) == "input length error in simplify_fraction");
+	assert(implode(",",simplify_fraction([1,2])) == "1,2");
+	assert(implode(",",simplify_fraction([4,2])) == "2,1");
+	assert(implode(",",simplify_fraction([2,12])) == "1,6");
+	assert(implode(",",simplify_fraction([3803,1234567890])) == "1,324630");
 
+
+
+	echo "unit tests complete";
 
 ?>
 

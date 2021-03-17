@@ -1,5 +1,9 @@
 <?php
 	
+	ini_set('display_errors', 1);
+	ini_set('display_startup_errors', 1);
+	error_reporting(E_ALL);
+	
 	assert_options(ASSERT_ACTIVE, 1);
 	assert_options(ASSERT_WARNING, 0);
 	assert_options(ASSERT_QUIET_EVAL, 1);
