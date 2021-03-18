@@ -104,6 +104,16 @@
 	assert(!arrays_are_equal([1,"a"],[1,"a",1.5]));
 	assert(!arrays_are_equal([2],[3]));
 	assert(!arrays_are_equal([2,3],[3,4]));
+		
+	assert(implode(",",add_fractions([1,2],[1,2])) == "1,1");
+	assert(implode(",",add_fractions([2,3],[3,4])) == "17,12");
+	assert(implode(",",add_fractions([1,6],[1,3])) == "1,2");
+	assert(implode(",",add_fractions([6,7],[10,11])) == "136,77");
+	assert(implode(",",add_fractions([123,456],[321,654])) == "12601,16568");
+	assert(add_fractions([1,2],[1]) == "input length error in add_fractions");
+	assert(add_fractions([1],[1,2]) == "input length error in add_fractions");
+	assert(add_fractions([1.5,2],[1,1]) == "type error in add_fractions");
+	assert(add_fractions([1,1],[1,"a"]) == "type error in add_fractions");
 
 	echo "unit tests complete";
 
