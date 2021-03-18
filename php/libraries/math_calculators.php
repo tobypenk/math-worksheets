@@ -336,19 +336,43 @@
 	
 	
 	
-	/*
 	
-	function arrays_are_equal(a1,a2) {
+	
+	function arrays_are_equal($a1,$a2) {
+		
+		/*
+			
+			test whether every element of two arrays is equal (including position)
+			array elements must not be arrays or objects
+			
+			parameters:
+				a1 (array, any type)
+				a2 (array, any type)
+				
+			returns:
+				true if a1[i] == a2[i] for all i; false otherwise
+			
+		*/
 	    
-	    if (a1.length != a2.length) return false;
-	    for (i in a1) {
-	        if (a1[i] != a2[i]) {
+	    //$types = ["boolean","integer","double","string","float"];
+	    
+	    if (gettype($a1) != "array" | gettype($a2) != "array") {
+		    return "type error in arrays_are_equal";
+	    }
+	    
+	    if (count($a1) != count($a2)) return false;
+	    
+	    for ($i=0; $i<count($a2); $i++) {
+	        if ($a1[$i] != $a2[$i]) {
 	            return false;
 	        }
 	    }
 	    
 	    return true;
 	}
+	
+	
+	/*
 	
 	function add_fractions(f1,f2) {
 	    

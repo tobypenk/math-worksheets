@@ -95,7 +95,15 @@
 	assert(implode(",",simplify_fraction([2,12])) == "1,6");
 	assert(implode(",",simplify_fraction([3803,1234567890])) == "1,324630");
 
-
+	assert(arrays_are_equal([],[]));
+	assert(arrays_are_equal("a",[]) == "type error in arrays_are_equal");
+	assert(arrays_are_equal([],0) == "type error in arrays_are_equal");
+	assert(arrays_are_equal([1],[1]));
+	assert(arrays_are_equal([1234567890,1,3,5,7,9],[1234567890,1,3,5,7,9]));
+	assert(arrays_are_equal([1,"a",1.5],[1,"a",1.5]));
+	assert(!arrays_are_equal([1,"a"],[1,"a",1.5]));
+	assert(!arrays_are_equal([2],[3]));
+	assert(!arrays_are_equal([2,3],[3,4]));
 
 	echo "unit tests complete";
 
