@@ -502,7 +502,15 @@
 		
 		/*
 			
+			calculate non-complex roots of second-order polynomial
 			
+			parameters:
+				a: coefficient of squared term
+				b: coefficient of first-power term
+				c: coefficient of zeroth-power term
+				
+			returns:
+				array of non-complex roots of given polynomial (if multiple, positive root is first)
 			
 		*/
 		
