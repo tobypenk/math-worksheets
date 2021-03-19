@@ -138,6 +138,12 @@
 	assert(divide_fractions([1],[1,2]) == "input length error in divide_fractions");
 	assert(divide_fractions([1.5,2],[1,1]) == "type error in divide_fractions");
 	assert(divide_fractions([1,1],[1,"a"]) == "type error in divide_fractions");
+	
+	assert(implode(",",apply_quadratic_formula(1,2,1)) == "-1");
+	assert(implode(",",apply_quadratic_formula(1,0,-1)) == "1,-1");
+	assert(implode(",",apply_quadratic_formula(5,1,10)) == "");
+	assert(implode(",",apply_quadratic_formula(1/4,1,-1/3,4)) == "0.3094,-4.3094");
+	assert(apply_quadratic_formula("a",1,10) == "type error in apply_quadratic_formula");
 
 	echo "unit tests complete";
 

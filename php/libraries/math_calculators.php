@@ -466,8 +466,6 @@
 	    return simplify_fraction([$n,$d]);
 	}
 	
-	
-	
 	function divide_fractions($f1,$f2) {
 		
 		/*
@@ -498,32 +496,42 @@
 	    return simplify_fraction([$n,$d]);
 	}
 	
-	/*
 	
-	function apply_quadratic_formula(a,b,c,precision) {
+		
+	function apply_quadratic_formula($a=0,$b=0,$c=0,$precision=2) {
+		
+		/*
+			
+			
+			
+		*/
+		
+		if (!all_numeric([$a,$b,$c])) {
+			return "type error in apply_quadratic_formula";
+		}
+
+	    $discriminant = pow($b,2) - (4 * $a * $c);
 	    
-	    if (a == undefined) a == 0;
-	    if (b == undefined) b == 0;
-	    if (c == undefined) c == 0;
-	    if (precision == undefined) precision = 2;
+	    if ($discriminant > 0) {
 	    
-	    var discriminant = Math.pow(b,2) - (4 * a * c),
-	        s1, s2;
-	    
-	    if (discriminant > 0) {
-	    
-	        s1 = Math.round(((b * -1 + Math.sqrt(discriminant)) / (2*a)) * Math.pow(10,precision)) / Math.pow(10,precision);
-	        s2 = Math.round(((b * -1 - Math.sqrt(discriminant)) / (2*a)) * Math.pow(10,precision)) / Math.pow(10,precision);
-	        return [s1,s2];
+	        $s1 = round((($b * -1 + sqrt($discriminant)) / (2*$a)) * pow(10,$precision)) / pow(10,$precision);
+	        $s2 = round((($b * -1 - sqrt($discriminant)) / (2*$a)) * pow(10,$precision)) / pow(10,$precision);
+	        return [$s1,$s2];
 	        
-	    } else if (discriminant == 0) {
+	    } else if ($discriminant == 0) {
 	    
-	        s1 = Math.round(((b * -1) / (2*a)) * Math.pow(10,precision)) / Math.pow(10,precision);
-	        return [s1];
+	        $s1 = round((($b * -1) / (2*$a)) * pow(10,$precision)) / pow(10,$precision);
+	        return [$s1];
+	        
 	    } else {
+		    
 	        return [];
+	        
 	    }
 	}
+	
+	
+	/*
 	
 	function simplify_radical(c,r) {
 	    
