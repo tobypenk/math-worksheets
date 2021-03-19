@@ -122,6 +122,14 @@
 	assert(subtract_fractions([1],[1,2]) == "input length error in subtract_fractions");
 	assert(subtract_fractions([1.5,2],[1,1]) == "type error in subtract_fractions");
 	assert(subtract_fractions([1,1],[1,"a"]) == "type error in subtract_fractions");
+	
+	assert(implode(",",multiply_fractions([1,2],[1,2])) == "1,4");
+	assert(implode(",",multiply_fractions([1,2],[1,3])) == "1,6");
+	assert(implode(",",multiply_fractions([321,654],[123,456])) == "4387,33136");
+	assert(multiply_fractions([1,2],[1]) == "input length error in multiply_fractions");
+	assert(multiply_fractions([1],[1,2]) == "input length error in multiply_fractions");
+	assert(multiply_fractions([1.5,2],[1,1]) == "type error in multiply_fractions");
+	assert(multiply_fractions([1,1],[1,"a"]) == "type error in multiply_fractions");
 
 	echo "unit tests complete";
 

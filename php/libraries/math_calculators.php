@@ -404,8 +404,6 @@
 	    return simplify_fraction([$n,$d]);
 	}
 	
-	
-	
 	function subtract_fractions($f1,$f2) {
 		
 		/*
@@ -418,7 +416,7 @@
 		    	for f1 and f2, array[0] is the numerator; array[1] is the denominator
 		    
 		    returns:
-		    	2-length array representing the f1 - f2
+		    	2-length array representing f1 - f2
 		    	
 		*/
 		
@@ -436,14 +434,39 @@
 	    return simplify_fraction([$n,$d]);
 	}
 	
-	/*
 	
-	function multiply_fractions(f1,f2) {
-	    return simplify_fraction(
-	        [f1[0] * f2[0],
-	        f1[1] * f2[1]]
-	    );
+	
+	function multiply_fractions($f1,$f2) {
+		
+		/*
+		    
+		    multiplies two fractions
+		    
+		    parameters:
+		    	f1: 2-length array of integers
+		    	f2: 2-length array of integers
+		    	for f1 and f2, array[0] is the numerator; array[1] is the denominator
+		    
+		    returns:
+		    	2-length array representing f1 * f2
+		    	
+		*/
+		
+		if (count($f1) != 2 | count($f2) != 2) {
+		    return "input length error in multiply_fractions";
+	    }
+	    
+	    if (!all_integers($f1) | !all_integers($f2)) {
+		    return "type error in multiply_fractions";
+	    }
+	    
+	    $n = $f1[0] * $f2[0];
+	    $d = $f1[1] * $f2[1];
+	    
+	    return simplify_fraction([$n,$d]);
 	}
+	
+	/*
 	
 	function divide_fractions(f1,f2) {
 	    return simplify_fraction(
