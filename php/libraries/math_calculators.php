@@ -284,6 +284,9 @@
 				
 		*/
 		
+		if (gettype($a1) != "array" | gettype($a2) != "array") {
+			return "type error in array_overlap";
+		}
 	    
 	    $total = [];
 	    
@@ -318,7 +321,12 @@
 	    
 	    $n_pf = prime_factorization($n_d_array[0]);
 	    $d_pf = prime_factorization($n_d_array[1]);
-	    $common_factors = array_overlap($n_pf,$d_pf);
+	    if (is_null($n_pf) | is_null($d_pf)) {
+		    $common_factors = [];
+	    } else {
+		    $common_factors = array_overlap($n_pf,$d_pf);
+	    }
+	    
 	    
 	    foreach ($common_factors as $i) {
 	        $n_d_array[0] /= $i;
@@ -366,9 +374,6 @@
 	    return true;
 	}
 	
-	
-	
-	
 	function add_fractions($f1,$f2) {
 	    
 	    /*
@@ -393,21 +398,45 @@
 		    return "type error in add_fractions";
 	    }
 	    
-	    return simplify_fraction(
-	        [$f1[0] * $f2[1] + $f2[0] * $f1[1],
-	        $f1[1] * $f2[1]]
-	    );
+	    $n = $f1[0] * $f2[1] + $f2[0] * $f1[1];
+	    $d = $f1[1] * $f2[1];
+	    
+	    return simplify_fraction([$n,$d]);
+	}
+	
+	
+	
+	function subtract_fractions($f1,$f2) {
+		
+		/*
+		    
+		    subtracts two fractions, which may or may not have common denominators
+		    
+		    parameters:
+		    	f1: 2-length array of integers
+		    	f2: 2-length array of integers
+		    	for f1 and f2, array[0] is the numerator; array[1] is the denominator
+		    
+		    returns:
+		    	2-length array representing the f1 - f2
+		    	
+		*/
+		
+		if (count($f1) != 2 | count($f2) != 2) {
+		    return "input length error in subtract_fractions";
+	    }
+	    
+	    if (!all_integers($f1) | !all_integers($f2)) {
+		    return "type error in subtract_fractions";
+	    }
+	    
+	    $n = $f1[0]  * $f2[1] - $f2[0] * $f1[1];
+	    $d = $f1[1] * $f2[1];
+	    
+	    return simplify_fraction([$n,$d]);
 	}
 	
 	/*
-	
-	function subtract_fractions(f1,f2) {
-	    
-	    return simplify_fraction(
-	        [f1[0]  * f2[1] - f2[0] * f1[1],
-	        f1[1] * f2[1]]   
-	    );
-	}
 	
 	function multiply_fractions(f1,f2) {
 	    return simplify_fraction(
