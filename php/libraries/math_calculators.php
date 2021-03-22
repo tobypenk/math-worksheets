@@ -643,11 +643,6 @@
 	    return [$c,$r];
 	}
 	
-	
-	
-	
-	
-	
 	function is_prime($n) {
 		
 		/*
@@ -677,6 +672,36 @@
 	}
 	
 	
+	function collapse_duplicates($a) {
+		
+		/*
+			
+			creates a dict with a count of occurrences of every unique value in an array
+				e.g., [1,1,1,2,2,3] returns {1:3,2:2,3:1}
+			
+			parameters:
+				a: array to collapse
+				
+			return:
+				summary dict
+			
+		*/
+		
+		if (gettype($a) != "array") {
+			return "type error in collapse_duplicates";
+		}
+	    
+	    $total = [];
+	    
+	    foreach ($a as $i) {
+		    $x = strval($i);
+	        if (!isset($total[$x])) $total[$x] = 0;
+	        $total[$x] += 1;
+	    }
+	    
+	    return $total;
+	}
+	
 	/*
 		
 	
@@ -686,17 +711,7 @@
 	
 	
 	
-	function collapse_duplicates(a) {
-	    
-	    var total = {};
-	    
-	    for (var i=0; i<a.length; i++) {
-	        if (!total[a[i]]) total[a[i]] = 0;
-	        total[a[i]] += 1;
-	    }
-	    
-	    return total;
-	}
+	
 	
 	function differentiate_polynomial(coefficient_array) {
 	    

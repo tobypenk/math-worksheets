@@ -185,6 +185,13 @@
 	assert(!is_prime(1000000000));
 	assert(is_prime("a") == "type error in is_prime");
 	
+	assert(json_encode(collapse_duplicates([1,2,3])) == "{\"1\":1,\"2\":1,\"3\":1}");
+	assert(json_encode(collapse_duplicates([1,1,1,2,2,3])) == "{\"1\":3,\"2\":2,\"3\":1}");
+	assert(json_encode(collapse_duplicates([1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1])) == "{\"1\":16}");
+	assert(json_encode(collapse_duplicates(["a","a",1,1,2.5])) == "{\"a\":2,\"1\":2,\"2.5\":1}");
+	assert(json_encode(collapse_duplicates([])) == "[]");
+	assert(collapse_duplicates(0) == "type error in collapse_duplicates");
+	
 	echo "unit tests complete";
 
 ?>
