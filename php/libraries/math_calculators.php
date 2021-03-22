@@ -701,8 +701,6 @@
 	    return $total;
 	}
 	
-	
-	
 	function differentiate_polynomial($coefficient_array) {
 		
 		/*
@@ -738,17 +736,42 @@
 	}
 	
 	
-	
+	function multiply_radicals($r1,$r2) {
+		
+		/*
+			
+			multiplies two radical expressions
+			
+			parameters:
+				r1: 2-length array of integers representing a radical expression (r1[0]-root-r1[1])
+				r2: 2-length array of integers representing a radical expression (r2[0]-root-r2[1])
+				
+			returns:
+				2-length array representing the simplified product
+			
+		*/
+		
+		if (gettype($r1) != "array" | gettype($r2) != "array") {
+			return "parameters to multiply_radicals must be arrays";
+		}
+		
+		if (count($r1) != 2 | count($r2) != 2) {
+			return "multiply_radicals expects 2 2-length arrays";
+		}
+		
+		if (!all_integers($r1) | !all_integers($r2)) {
+			return "arrays passed to multiply_radicals must contain all integers";
+		}
+	    
+	    return simplify_radical($r1[0] * $r2[0],$r1[1] * $r2[1]);
+	}
 	
 	
 	/*
 	
 	
 	
-	function multiply_radicals(r1,r2) {
-	    
-	    return simplify_radical(r1[0] * r2[0],r1[1] * r2[1]);
-	}
+	
 	
 	function add_radicals(r1,r2) {
 	    

@@ -200,10 +200,26 @@
 	assert(differentiate_polynomial([1,1,1,0,"a",1]) == "type error in parameters to differentiate_polynomial");
 	assert(differentiate_polynomial(0) == "type error in differentiate_polynomial");
 	
+	
+	
+	assert(implode(",",multiply_radicals([1,1],[1,1])) == "1,1");
+	assert(implode(",",multiply_radicals([1,2],[1,2])) == "2,1");
+	assert(implode(",",multiply_radicals([1,15],[1,21])) == "3,35");
+	assert(implode(",",multiply_radicals([11,6],[2,14])) == "44,21");
+	assert(implode(",",multiply_radicals([1,1],[1,1])) == "1,1");
+	assert(implode(",",multiply_radicals([-1,1],[1,1])) == "-1,1");
+	assert(multiply_radicals([-1.5,1],[1.5,1]) == "arrays passed to multiply_radicals must contain all integers");
 
+	assert(multiply_radicals([1],[1,2]) == "multiply_radicals expects 2 2-length arrays");
+	assert(multiply_radicals(["1",2],[2]) == "multiply_radicals expects 2 2-length arrays");
+	assert(multiply_radicals([],[]) == "multiply_radicals expects 2 2-length arrays");
+	assert(multiply_radicals(0,[1,2]) == "parameters to multiply_radicals must be arrays");
+	assert(multiply_radicals([1,2],"X") == "parameters to multiply_radicals must be arrays");
+	assert(multiply_radicals([1,2],true) == "parameters to multiply_radicals must be arrays");
+	assert(multiply_radicals([1,2],["a",2]) == "arrays passed to multiply_radicals must contain all integers");
+	assert(multiply_radicals([1,2],[false,2]) == "arrays passed to multiply_radicals must contain all integers");
 	
-	
-	
+
 	
 	echo "unit tests complete";
 
