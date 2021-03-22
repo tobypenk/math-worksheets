@@ -434,8 +434,6 @@
 	    return simplify_fraction([$n,$d]);
 	}
 	
-	
-	
 	function multiply_fractions($f1,$f2) {
 		
 		/*
@@ -496,8 +494,6 @@
 	    return simplify_fraction([$n,$d]);
 	}
 	
-	
-		
 	function apply_quadratic_formula($a=0,$b=0,$c=0,$precision=2) {
 		
 		/*
@@ -538,21 +534,48 @@
 	    }
 	}
 	
-	
-	/*
-	
-	function simplify_radical(c,r) {
+	function sort_array($a) {
+		
+		if (gettype($a) != "array") {
+			return "type error in sort_array";
+		}
+		
+		if (!all_numeric($a) & !all_strings($a)) {
+			return "sort_array only accepts arrays that are either all numeric or all strings";
+		}
+		
+		if (count($a) == 0) {
+			return [];
+		}
 	    
-	    var squares = extract_pairs(prime_factorization(r));
+		$total = [$a[0]];
 	    
-	    for (var i=0; i<squares.length; i++) {
-	        c *= squares[i];
-	        r /= (squares[i] * squares[i]);
+	    for ($i=1; $i<count($a); $i++) {
+	        $is_inserted = false;
+	        for ($j=0; $j<count($total); $j++) {
+	            if ($a[$i] <= $total[$j]) {
+		            array_splice($total, $j, 0, $a[$i]);
+	                //total.splice(j,0,a[i]);
+	                $is_inserted = true;
+	                break;
+	            }
+	        }
+	        if (!$is_inserted) {
+		        array_push($total, $a[$i]);
+	            //total.push(a[i]);
+	        }
 	    }
 	    
-	    return [c,r];
+	    return $total;
 	}
 	
+	
+		
+	
+	
+	
+	/*
+		
 	function extract_pairs(arr) {
 	    
 	    arr = sort_array(arr);
@@ -567,27 +590,19 @@
 	    
 	    return total;
 	}
-	
-	function sort_array(a) {
+		
+	function simplify_radical(c,r) {
 	    
-	    var total = [a[0]], is_inserted;
+	    var squares = extract_pairs(prime_factorization(r));
 	    
-	    for (var i=1; i<a.length; i++) {
-	        is_inserted = false;
-	        for (var j=0; j<total.length; j++) {
-	            if (a[i] <= total[j]) {
-	                total.splice(j,0,a[i]);
-	                is_inserted = true;
-	                break;
-	            }
-	        }
-	        if (!is_inserted) {
-	            total.push(a[i]);
-	        }
+	    for (var i=0; i<squares.length; i++) {
+	        c *= squares[i];
+	        r /= (squares[i] * squares[i]);
 	    }
 	    
-	    return total;
+	    return [c,r];
 	}
+	
 	
 	function get_column_from_json_object(obj,col) {
 	    var total = [];
@@ -913,6 +928,26 @@
 		
 		foreach ($arr as $t) {
 			if (!is_integer($t)) return false;
+		}
+		return true;
+	}
+	
+	function all_strings($arr) {
+		
+		/*
+			
+			test if all elements of an array are strings
+			
+			parameters:
+				arr: an iterable
+				
+			returns:
+				bool: true if all strings; otherwise, false
+			
+		*/
+		
+		foreach ($arr as $t) {
+			if (!is_string($t)) return false;
 		}
 		return true;
 	}

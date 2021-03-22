@@ -144,6 +144,20 @@
 	assert(implode(",",apply_quadratic_formula(5,1,10)) == "");
 	assert(implode(",",apply_quadratic_formula(1/4,1,-1/3,4)) == "0.3094,-4.3094");
 	assert(apply_quadratic_formula("a",1,10) == "type error in apply_quadratic_formula");
+	
+	
+	assert(implode(",",sort_array([3,2,1])) == "1,2,3");
+	assert(implode(",",sort_array([1])) == "1");
+	assert(implode(",",sort_array([])) == "");
+	assert(implode(",",sort_array([1000000,0.5,-1.3,-1000])) == "-1000,-1.3,0.5,1000000");
+	assert(implode(",",sort_array(["b","a","z","y"])) == "a,b,y,z");
+	assert(sort_array(0) == "type error in sort_array");
+	assert(sort_array([0,"a"]) == "sort_array only accepts arrays that are either all numeric or all strings");
+	
+	
+	
+	
+	
 
 	echo "unit tests complete";
 
