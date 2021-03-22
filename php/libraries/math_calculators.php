@@ -671,7 +671,6 @@
 	    return true;
 	}
 	
-	
 	function collapse_duplicates($a) {
 		
 		/*
@@ -702,28 +701,49 @@
 	    return $total;
 	}
 	
-	/*
+	
+	
+	function differentiate_polynomial($coefficient_array) {
 		
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	function differentiate_polynomial(coefficient_array) {
+		/*
+			
+			differentiates a polynomial in standard form
+				e.g., [1,2,2,1] represents x^3 + 2x^2 + 2x + 1
+				and would return [3,4,2] representing 3x^2 + 4x + 2
+			
+			parameters:
+				coefficient_array: array of coefficients from largest to smallest
+				must contain zeroes for nonexistent terms
+				
+			returns:
+				array of coefficients for differentiated polynomial
+			
+		*/
+		
+		if (gettype($coefficient_array) != "array") {
+			return "type error in differentiate_polynomial";
+		}
+		
+		if (!all_numeric($coefficient_array)) {
+			return "type error in parameters to differentiate_polynomial";
+		}
 	    
-	    var i,e,l=coefficient_array.length;
+	    $l=count($coefficient_array);
 	    
-	    for (var i=0; i<l; i++) {
-	        coefficient_array[i] *= l-i-1;
+	    for ($i=0; $i<$l; $i++) {
+	        $coefficient_array[$i] *= $l-$i-1;
 	    }
-	    
-	    coefficient_array.pop();
-	    return coefficient_array;
+	    array_pop($coefficient_array);
+	    return $coefficient_array;
 	}
+	
+	
+	
+	
+	
+	/*
+	
+	
 	
 	function multiply_radicals(r1,r2) {
 	    

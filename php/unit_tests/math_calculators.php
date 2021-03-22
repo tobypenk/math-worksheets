@@ -168,7 +168,6 @@
 	assert(simplify_radical(2,"x") == "type error in simplify_radical");
 	assert(simplify_radical("h","t") == "type error in simplify_radical");
 	
-	
 	assert(is_prime(2));
 	assert(is_prime(3));
 	assert(is_prime(5));
@@ -191,6 +190,20 @@
 	assert(json_encode(collapse_duplicates(["a","a",1,1,2.5])) == "{\"a\":2,\"1\":2,\"2.5\":1}");
 	assert(json_encode(collapse_duplicates([])) == "[]");
 	assert(collapse_duplicates(0) == "type error in collapse_duplicates");
+	
+	
+	
+	assert(implode(",",differentiate_polynomial([])) == "");
+	assert(implode(",",differentiate_polynomial([1])) == "");
+	assert(implode(",",differentiate_polynomial([1,2,2,1])) == "3,4,2");
+	assert(implode(",",differentiate_polynomial([1,1,1,0,1,1])) == "5,4,3,0,1");
+	assert(differentiate_polynomial([1,1,1,0,"a",1]) == "type error in parameters to differentiate_polynomial");
+	assert(differentiate_polynomial(0) == "type error in differentiate_polynomial");
+	
+
+	
+	
+	
 	
 	echo "unit tests complete";
 
