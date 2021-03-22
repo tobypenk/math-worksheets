@@ -536,6 +536,18 @@
 	
 	function sort_array($a) {
 		
+		/*
+			
+			sorts an array of either all numeric data or all string data
+			
+			parameters:
+				a: array to sort
+				
+			returns:
+				the sorted array (in ascending order)
+			
+		*/
+		
 		if (gettype($a) != "array") {
 			return "type error in sort_array";
 		}
@@ -555,53 +567,92 @@
 	        for ($j=0; $j<count($total); $j++) {
 	            if ($a[$i] <= $total[$j]) {
 		            array_splice($total, $j, 0, $a[$i]);
-	                //total.splice(j,0,a[i]);
 	                $is_inserted = true;
 	                break;
 	            }
 	        }
 	        if (!$is_inserted) {
 		        array_push($total, $a[$i]);
-	            //total.push(a[i]);
 	        }
 	    }
 	    
 	    return $total;
 	}
 	
-	
+	function extract_pairs($arr) {
 		
+		/*
+			
+			extracts one valuje for every pair of identical values in an array. for example:
+				[1,1,2,2] returns [1,2]
+				[1,1,1,2,2] returns [1,2]
+				[1,1,1,1,2,2] returns [1,1,2]
+				[1,2,3] returns []
+				
+			parameters:
+				arr: array from which to extract pairs
+				
+			returns:
+				array of paired values
+			
+		*/
+		
+		if (gettype($arr) != "array") {
+			return "type error in extract_pairs";
+		}
+	    
+	    $arr = sort_array($arr);
+	    $total = [];
+	    for ($i=1; $i<count($arr); $i++) {
+	        
+	        if ($arr[$i] == $arr[$i-1]) {
+		        array_push($total,$arr[$i]);
+	            $i += 1;
+	        }
+	    }
+	    
+	    return $total;
+	}
+		
+	
+	function simplify_radical($c,$r) {
+		
+		/*
+			
+			returns a radical in simplest form; e.g., 2-root-50 becomes 10-root-2
+			
+			parameters:
+				c: the coefficient outside the radical
+				r: the constant within the radical
+				
+			returns:
+				2-length array with simplified c and r
+			
+		*/
+		
+		if (!is_integer($c) | !is_integer($r)) {
+			return "type error in simplify_radical";
+		}
+	    
+	    $squares = extract_pairs(prime_factorization($r));
+	    
+	    for ($i=0; $i<count($squares); $i++) {
+	        $c *= $squares[$i];
+	        $r /= ($squares[$i] * $squares[$i]);
+	    }
+	    
+	    return [$c,$r];
+	}
+	
+	
+	
+	
 	
 	
 	
 	/*
 		
-	function extract_pairs(arr) {
-	    
-	    arr = sort_array(arr);
-	    var total = [];
-	    for (var i=1; i<arr.length; i++) {
-	        
-	        if (arr[i] == arr[i-1]) {
-	            total.push(arr[i]);
-	            i += 1;
-	        }
-	    }
-	    
-	    return total;
-	}
-		
-	function simplify_radical(c,r) {
-	    
-	    var squares = extract_pairs(prime_factorization(r));
-	    
-	    for (var i=0; i<squares.length; i++) {
-	        c *= squares[i];
-	        r /= (squares[i] * squares[i]);
-	    }
-	    
-	    return [c,r];
-	}
+	
 	
 	
 	function get_column_from_json_object(obj,col) {

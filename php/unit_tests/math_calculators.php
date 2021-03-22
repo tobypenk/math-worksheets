@@ -145,7 +145,6 @@
 	assert(implode(",",apply_quadratic_formula(1/4,1,-1/3,4)) == "0.3094,-4.3094");
 	assert(apply_quadratic_formula("a",1,10) == "type error in apply_quadratic_formula");
 	
-	
 	assert(implode(",",sort_array([3,2,1])) == "1,2,3");
 	assert(implode(",",sort_array([1])) == "1");
 	assert(implode(",",sort_array([])) == "");
@@ -154,11 +153,21 @@
 	assert(sort_array(0) == "type error in sort_array");
 	assert(sort_array([0,"a"]) == "sort_array only accepts arrays that are either all numeric or all strings");
 	
+	assert(implode(",",extract_pairs([1,2,3])) == "");
+	assert(implode(",",extract_pairs([1,1,2,3])) == "1");
+	assert(implode(",",extract_pairs([1,1,1,2,3])) == "1");
+	assert(implode(",",extract_pairs([1,1,1,1,2,3])) == "1,1");
+	assert(implode(",",extract_pairs([1,1,2,2,3,3])) == "1,2,3");
+	assert(extract_pairs(0) == "type error in extract_pairs");
 	
+	assert(implode(",",simplify_radical(2,50)) == "10,2");
+	assert(implode(",",simplify_radical(10,2)) == "10,2");
+	assert(implode(",",simplify_radical(1,1524155677489)) == "1234567,1");
+	assert(implode(",",simplify_radical(2,3048311354978)) == "2469134,2");
+	assert(simplify_radical("a",50) == "type error in simplify_radical");
+	assert(simplify_radical(2,"x") == "type error in simplify_radical");
+	assert(simplify_radical("h","t") == "type error in simplify_radical");
 	
-	
-	
-
 	echo "unit tests complete";
 
 ?>
