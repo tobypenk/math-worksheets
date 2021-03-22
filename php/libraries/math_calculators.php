@@ -735,7 +735,6 @@
 	    return $coefficient_array;
 	}
 	
-	
 	function multiply_radicals($r1,$r2) {
 		
 		/*
@@ -766,33 +765,89 @@
 	    return simplify_radical($r1[0] * $r2[0],$r1[1] * $r2[1]);
 	}
 	
-	
-	/*
-	
-	
-	
-	
-	
-	function add_radicals(r1,r2) {
+	function add_radicals($r1,$r2) {
+		
+		/*
+			
+			adds two radical expressions of the form c-root-r
+			
+			parameters:
+				r1: 2-length array of integers of the form [c,r]
+				r2: 2-length array of integers of the form [c,r]
+				
+			returns:
+				2-length array of integers of the form [c,r] representing the summed radicals
+			
+		*/
+		
+		if (gettype($r1) != "array" | gettype($r2) != "array") {
+			return "parameters to add_radicals must be arrays";
+		}
+		
+		if (count($r1) != 2 | count($r2) != 2) {
+			return "add_radicals expects 2 2-length arrays";
+		}
+		
+		if (!all_integers($r1) | !all_integers($r2)) {
+			return "arrays passed to add_radicals must contain all integers";
+		}
 	    
-	    r1 = simplify_radical(r1[0],r1[1]);
-	    r2 = simplify_radical(r2[0],r2[1]);
+	    $r1 = simplify_radical($r1[0],$r1[1]);
+	    $r2 = simplify_radical($r2[0],$r2[1]);
 	    
-	    if (r1[1] == r2[1]) {
-	        return simplify_radical(r1[0] + r2[0],r1[1]);
+	    if ($r1[1] == $r2[1]) {
+	        return simplify_radical($r1[0] + $r2[0],$r1[1]);
 	    } else {
-	        return [r1,r2];
+	        return [$r1,$r2];
 	    }
 	}
 	
-	function multiply_radical_expression_by_conjugate(r1,r2) {
 	
-	    var t1 = multiply_radicals(r1,r1);
-	    var t2 = multiply_radicals(r2,r2);
-	    t2[0] *= -1;
+	
+	
+	
+	function multiply_radical_expression_by_conjugate($r1,$r2) {
+		
+		/*
+			
+			finds the conjugate of two radical expressions - (c1-root-r1 squared minus c2-root-r2 squared)
+				used for rationalizing radical expressions
+			
+			parameters:
+				r1: 2-length array of integers representing [c1,r1]
+				r2: 2-length array of integers representing [c2,r2]
+			
+			returns:
+				integer representing the conjugate of the two radicals
+				
+		*/
+		
+		if (gettype($r1) != "array" | gettype($r2) != "array") {
+			return "parameters to multiply_radical_expression_by_conjugate must be arrays";
+		}
+		
+		if (count($r1) != 2 | count($r2) != 2) {
+			return "multiply_radical_expression_by_conjugate expects 2 2-length arrays";
+		}
+		
+		if (!all_integers($r1) | !all_integers($r2)) {
+			return "arrays passed to multiply_radical_expression_by_conjugate must contain all integers";
+		}
+	
+	    $t1 = multiply_radicals($r1,$r1);
+	    $t2 = multiply_radicals($r2,$r2);
+	    $t2[0] *= -1;
 	    
-	    return t1[0] + t2[0];
+	    return $t1[0] + $t2[0];
 	}
+	
+	
+	/*
+
+	
+	
+	
+	
 	
 	function foil_radical_expressions(r_exp1,r_exp2) {
 	
