@@ -168,6 +168,23 @@
 	assert(simplify_radical(2,"x") == "type error in simplify_radical");
 	assert(simplify_radical("h","t") == "type error in simplify_radical");
 	
+	
+	assert(is_prime(2));
+	assert(is_prime(3));
+	assert(is_prime(5));
+	assert(is_prime(7));
+	assert(is_prime(11));
+	assert(is_prime(7877));
+	assert(is_prime(140339));
+	assert(!is_prime(0));
+	assert(!is_prime(1));
+	assert(!is_prime(4));
+	assert(!is_prime(6));
+	assert(!is_prime(10));
+	assert(!is_prime(2048));
+	assert(!is_prime(1000000000));
+	assert(is_prime("a") == "type error in is_prime");
+	
 	echo "unit tests complete";
 
 ?>

@@ -614,7 +614,6 @@
 	    return $total;
 	}
 		
-	
 	function simplify_radical($c,$r) {
 		
 		/*
@@ -649,31 +648,43 @@
 	
 	
 	
+	function is_prime($n) {
+		
+		/*
+			
+			prime test
+			
+			parameters:
+				n: an integer
+				
+			returns:
+				true if n is prime; false otherwise
+			
+		*/
+		
+		if (!is_integer($n)) {
+			return "type error in is_prime";
+		}
+	    
+	    if ($n<=1) return false;
+	    if ($n == 2 | $n == 3 | $n == 5 | $n == 7) return true;
+	    if ($n < 11) return false;
+	    for ($i=2; $i<floor(ceil($n)); $i++) {
+	        if ($n % $i == 0) return false;
+	    }
+	    
+	    return true;
+	}
+	
 	
 	/*
 		
 	
 	
 	
-	function get_column_from_json_object(obj,col) {
-	    var total = [];
-	    for (i in obj) {
-	        total.push(obj[i][col]);
-	    }
-	    return total;
-	}
 	
-	function is_prime(n) {
-	    
-	    if (n<=1) return false;
-	    if (n == 2 || n == 3 || n == 5 || n == 7) return true;
-	    if (n < 11) return false;
-	    for (var i=2; i<Math.floor(Math.ceil(n)); i++) {
-	        if (n % i == 0) return false;
-	    }
-	    
-	    return true;
-	}
+	
+	
 	
 	function collapse_duplicates(a) {
 	    
@@ -1014,6 +1025,15 @@
 	/*
 		
 		to deprecate and replace with builtins
+		
+		
+	function get_column_from_json_object(obj,col) {
+	    var total = [];
+	    for (i in obj) {
+	        total.push(obj[i][col]);
+	    }
+	    return total;
+	}
 	
 	function arr_a_contains_element_b($a,$b) {
 		
