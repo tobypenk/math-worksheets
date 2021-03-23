@@ -25,17 +25,12 @@
 			    adds two fractions, which may or may not have common denominators
 			    
 			    parameters:
-			    	f1: 2-length array of integers
-			    	f2: 2-length array of integers
-			    	for f1 and f2, array[0] is the numerator; array[1] is the denominator
+			    	addend: fraction to be added to this
 			    
 			    returns:
-			    	2-length array representing the summed, simplified fraction
+			    	the summed fraction (does not modify this)
 			    	
 			*/
-		    
-		    //$n = $f1[0] * $f2[1] + $f2[0] * $f1[1];
-		    //$d = $f1[1] * $f2[1];
 
 			$n = $this->numerator * $addend->denominator + $addend->numerator * $this->denominator;
 		    $d = $this->denominator * $addend->denominator;
@@ -50,10 +45,10 @@
 				reduces a fraction to simplest form (i.e., the form in which numerator and denominator share no factors)
 				
 				parameters:
-					n_d_array: 2-length array of ints
+					none
 					
 				returns:
-					2-length array representing the simplified fraction. 0th element is numerator; 1st element is denominator.
+					the simplified fraction (also modifies this)
 				
 			*/
 			
@@ -86,17 +81,13 @@
 			    subtracts two fractions, which may or may not have common denominators
 			    
 			    parameters:
-			    	f1: 2-length array of integers
-			    	f2: 2-length array of integers
-			    	for f1 and f2, array[0] is the numerator; array[1] is the denominator
+			    	addend: fraction to be subtracted
 			    
 			    returns:
-			    	2-length array representing f1 - f2
+			    	subtracted fraction (does not modify this in place)
 			    	
 			*/
 			
-			
-		    
 		    $n = $this->numerator  * $addend->denominator - $addend->numerator * $this->denominator;
 		    $d = $this->denominator * $addend->denominator;
 		    
@@ -110,12 +101,10 @@
 			    multiplies two fractions
 			    
 			    parameters:
-			    	f1: 2-length array of integers
-			    	f2: 2-length array of integers
-			    	for f1 and f2, array[0] is the numerator; array[1] is the denominator
+			    	multiple: fraction to be multiplied
 			    
 			    returns:
-			    	2-length array representing f1 * f2
+			    	the product of this and multiple (does not modify this)
 			    	
 			*/
 		    
@@ -132,12 +121,10 @@
 			    divides two fractions, which may or may not have common denominators
 			    
 			    parameters:
-			    	f1: 2-length array of integers
-			    	f2: 2-length array of integers
-			    	for f1 and f2, array[0] is the numerator; array[1] is the denominator
+			    	dividend: fraction by which to divide this
 			    
 			    returns:
-			    	2-length array representing f1 / f2
+			    	divided fraction (does not modify this)
 			    	
 			*/
 			

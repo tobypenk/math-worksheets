@@ -377,7 +377,7 @@
 	    return $n_d_array;
 	}
 	
-	//done
+	//to deprecate
 	function add_fractions($f1,$f2) {
 	    
 	    /*
