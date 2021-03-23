@@ -99,6 +99,28 @@
 		    return (new Fraction($n,$d))->simplify();
 		}
 		
+		public function multiply(Fraction $multiple): Fraction {
+		
+			/*
+			    
+			    multiplies two fractions
+			    
+			    parameters:
+			    	f1: 2-length array of integers
+			    	f2: 2-length array of integers
+			    	for f1 and f2, array[0] is the numerator; array[1] is the denominator
+			    
+			    returns:
+			    	2-length array representing f1 * f2
+			    	
+			*/
+		    
+		    $n = $this->numerator * $multiple->numerator;
+		    $d = $this->denominator * $multiple->denominator;
+		    
+		    return (new Fraction($n,$d))->simplify();
+		}
+		
 	}
 	
 	

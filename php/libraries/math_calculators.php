@@ -408,7 +408,7 @@
 	    return simplify_fraction([$n,$d]);
 	}
 	
-	//
+	//done
 	function subtract_fractions($f1,$f2) {
 		
 		/*

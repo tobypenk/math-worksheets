@@ -263,7 +263,11 @@
 	
 	
 
-	$x = (new Fraction(250,400))->simplify()->subtract(new Fraction(1,4));
+	$x = (new Fraction(250,400))->
+		simplify()->
+		subtract(new Fraction(1,4))->
+		multiply(new Fraction(1,2));
+		
 	$x->display();
 	
 	
