@@ -263,8 +263,8 @@
 	
 	
 
-	$x = new Fraction(250,400);
-	$x->simplify()->display();
+	$x = (new Fraction(250,400))->simplify()->subtract(new Fraction(1,4));
+	$x->display();
 	
 	
 	echo "unit tests complete";

@@ -304,6 +304,40 @@
 	    return $total;
 	}
 	
+	function arrays_are_equal($a1,$a2) {
+		
+		/*
+			
+			test whether every element of two arrays is equal (including position)
+			array elements must not be arrays or objects
+			
+			parameters:
+				a1 (array, any type)
+				a2 (array, any type)
+				
+			returns:
+				true if a1[i] == a2[i] for all i; false otherwise
+			
+		*/
+	    
+	    //$types = ["boolean","integer","double","string","float"];
+	    
+	    if (gettype($a1) != "array" | gettype($a2) != "array") {
+		    return "type error in arrays_are_equal";
+	    }
+	    
+	    if (count($a1) != count($a2)) return false;
+	    
+	    for ($i=0; $i<count($a2); $i++) {
+	        if ($a1[$i] != $a2[$i]) {
+	            return false;
+	        }
+	    }
+	    
+	    return true;
+	}
+	
+	//done
 	function simplify_fraction($n_d_array) {
 		
 		/*
@@ -343,39 +377,7 @@
 	    return $n_d_array;
 	}
 	
-	function arrays_are_equal($a1,$a2) {
-		
-		/*
-			
-			test whether every element of two arrays is equal (including position)
-			array elements must not be arrays or objects
-			
-			parameters:
-				a1 (array, any type)
-				a2 (array, any type)
-				
-			returns:
-				true if a1[i] == a2[i] for all i; false otherwise
-			
-		*/
-	    
-	    //$types = ["boolean","integer","double","string","float"];
-	    
-	    if (gettype($a1) != "array" | gettype($a2) != "array") {
-		    return "type error in arrays_are_equal";
-	    }
-	    
-	    if (count($a1) != count($a2)) return false;
-	    
-	    for ($i=0; $i<count($a2); $i++) {
-	        if ($a1[$i] != $a2[$i]) {
-	            return false;
-	        }
-	    }
-	    
-	    return true;
-	}
-	
+	//done
 	function add_fractions($f1,$f2) {
 	    
 	    /*
@@ -406,6 +408,7 @@
 	    return simplify_fraction([$n,$d]);
 	}
 	
+	//
 	function subtract_fractions($f1,$f2) {
 		
 		/*
@@ -436,6 +439,7 @@
 	    return simplify_fraction([$n,$d]);
 	}
 	
+	//
 	function multiply_fractions($f1,$f2) {
 		
 		/*
@@ -466,6 +470,7 @@
 	    return simplify_fraction([$n,$d]);
 	}
 	
+	//
 	function divide_fractions($f1,$f2) {
 		
 		/*
@@ -838,10 +843,6 @@
 	    
 	    return $t1[0] + $t2[0];
 	}
-	
-	
-	
-	
 	
 	function convert_to_base_10($n,$current_base) {
 	    

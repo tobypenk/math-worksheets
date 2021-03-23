@@ -5,18 +5,14 @@
 	    public int $numerator;
 	    public int $denominator;
 	
-	
 	    public function __construct(int $numerator, int $denominator) {
 	        $this->numerator = $numerator;
 	        $this->denominator = $denominator;
 	    }
 	    
 	    public function display(): void {
-	        echo $this->numerator . " " . $this->denominator;
+	        echo $this->numerator . "/" . $this->denominator;
 	    }
-	    
-	    
-	    
 	    
 	    public function add(Fraction $addend): Fraction {
 	    
@@ -40,7 +36,7 @@
 			$n = $this->numerator * $addend->denominator + $addend->numerator * $this->denominator;
 		    $d = $this->denominator * $addend->denominator;
 		    
-		    return new Fraction($n,$d);
+		    return (new Fraction($n,$d))->simplify();
 		}
 		
 		public function simplify(): Fraction {
@@ -78,8 +74,31 @@
 		    
 		    return $this;
 		}
-	
-	    
+		
+		public function subtract(Fraction $addend): Fraction {
+		
+			/*
+			    
+			    subtracts two fractions, which may or may not have common denominators
+			    
+			    parameters:
+			    	f1: 2-length array of integers
+			    	f2: 2-length array of integers
+			    	for f1 and f2, array[0] is the numerator; array[1] is the denominator
+			    
+			    returns:
+			    	2-length array representing f1 - f2
+			    	
+			*/
+			
+			
+		    
+		    $n = $this->numerator  * $addend->denominator - $addend->numerator * $this->denominator;
+		    $d = $this->denominator * $addend->denominator;
+		    
+		    return (new Fraction($n,$d))->simplify();
+		}
+		
 	}
 	
 	
