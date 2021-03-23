@@ -266,7 +266,8 @@
 	$x = (new Fraction(250,400))->
 		simplify()->
 		subtract(new Fraction(1,4))->
-		multiply(new Fraction(1,2));
+		multiply(new Fraction(1,2))->
+		divide(new Fraction(1,32));
 		
 	$x->display();
 	

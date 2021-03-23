@@ -439,7 +439,7 @@
 	    return simplify_fraction([$n,$d]);
 	}
 	
-	//
+	//done
 	function multiply_fractions($f1,$f2) {
 		
 		/*
@@ -470,7 +470,7 @@
 	    return simplify_fraction([$n,$d]);
 	}
 	
-	//
+	//done
 	function divide_fractions($f1,$f2) {
 		
 		/*
