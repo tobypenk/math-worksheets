@@ -93,29 +93,34 @@
 	
 	
 	
-	// add tests of negatives
+
 	assert((new Fraction(1,2))->simplify()->stringify() == "1/2");
 	assert((new Fraction(3,6))->simplify()->stringify() == "1/2");
 	assert((new Fraction(4,2))->simplify()->stringify() == "2/1");
 	assert((new Fraction(2,12))->simplify()->stringify() == "1/6");
 	assert((new Fraction(3803,1234567890))->simplify()->stringify() == "1/324630");
+	assert((new Fraction(-3803,1234567890))->simplify()->stringify() == "-1/324630");
 	
 	assert((new Fraction(1,2))->add(new Fraction(1,2))->stringify() == "1/1");
 	assert((new Fraction(2,3))->add(new Fraction(3,4))->stringify() == "17/12");
 	assert((new Fraction(1,6))->add(new Fraction(1,3))->stringify() == "1/2");
+	assert((new Fraction(1,6))->add(new Fraction(-1,3))->stringify() == "-1/6");
 	assert((new Fraction(6,7))->add(new Fraction(10,11))->stringify() == "136/77");
 	assert((new Fraction(123,456))->add(new Fraction(321,654))->stringify() == "12601/16568");
 	
 	assert((new Fraction(1,2))->subtract(new Fraction(1,2))->stringify() == "0/4");
 	assert((new Fraction(1,2))->subtract(new Fraction(1,3))->stringify() == "1/6");
+	assert((new Fraction(1,2))->subtract(new Fraction(-1,3))->stringify() == "5/6");
 	assert((new Fraction(321,654))->subtract(new Fraction(123,456))->stringify() == "3663/16568");
 	
 	assert((new Fraction(1,2))->multiply(new Fraction(1,2))->stringify() == "1/4");
 	assert((new Fraction(1,2))->multiply(new Fraction(1,3))->stringify() == "1/6");
 	assert((new Fraction(321,654))->multiply(new Fraction(123,456))->stringify() == "4387/33136");
+	assert((new Fraction(321,654))->multiply(new Fraction(-123,456))->stringify() == "-4387/33136");
 	
 	assert((new Fraction(1,2))->divide(new Fraction(1,2))->stringify() == "1/1");
 	assert((new Fraction(1,2))->divide(new Fraction(1,3))->stringify() == "3/2");
+	assert((new Fraction(1,2))->divide(new Fraction(-1,3))->stringify() == "-3/2");
 	assert((new Fraction(321,654))->divide(new Fraction(123,456))->stringify() == "8132/4469");
 
 	
