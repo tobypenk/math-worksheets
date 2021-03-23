@@ -262,9 +262,9 @@
 	
 	
 	
-	$f = new Fraction(1.0,2.0);
-	$f->add(new Fraction(1.0,3.0))->display_fraction();
-	
+
+	$x = new Fraction(250,400);
+	$x->simplify()->display();
 	
 	
 	echo "unit tests complete";

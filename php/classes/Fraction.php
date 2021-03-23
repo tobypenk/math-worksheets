@@ -2,16 +2,16 @@
 	
 	class Fraction {
 
-	    public float $numerator;
-	    public float $denominator;
+	    public int $numerator;
+	    public int $denominator;
 	
 	
-	    public function __construct(float $numerator, float $denominator) {
+	    public function __construct(int $numerator, int $denominator) {
 	        $this->numerator = $numerator;
 	        $this->denominator = $denominator;
 	    }
 	    
-	    public function display_fraction(): void {
+	    public function display(): void {
 	        echo $this->numerator . " " . $this->denominator;
 	    }
 	    
@@ -42,6 +42,43 @@
 		    
 		    return new Fraction($n,$d);
 		}
+		
+		public function simplify(): Fraction {
+		
+			/*
+				
+				reduces a fraction to simplest form (i.e., the form in which numerator and denominator share no factors)
+				
+				parameters:
+					n_d_array: 2-length array of ints
+					
+				returns:
+					2-length array representing the simplified fraction. 0th element is numerator; 1st element is denominator.
+				
+			*/
+			
+		    $n_pf = prime_factorization($this->numerator);
+		    $d_pf = prime_factorization($this->denominator);
+		    
+		    if (is_null($n_pf) | is_null($d_pf)) {
+			    $common_factors = [];
+		    } else {
+			    $common_factors = array_overlap($n_pf,$d_pf);
+		    }
+		    
+		    foreach ($common_factors as $i) {
+		        $this->numerator /= $i;
+		        $this->denominator /= $i;
+		    }
+		    
+		    if ($this->denominator < 0 && $this->numerator > 0) {
+		        $this->numerator *= -1;
+		        $this->denominator *= -1;
+		    }
+		    
+		    return $this;
+		}
+	
 	    
 	}
 	
