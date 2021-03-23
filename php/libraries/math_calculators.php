@@ -863,14 +863,20 @@
 	
 	
 	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	/*
-
-	
-	
-	
-	
-	
-	
 	
 	function convert_to_base_10(n,current_base) {
 	    

@@ -262,6 +262,10 @@
 	
 	
 	
+	$f = new Fraction(1.0,2.0);
+	$f->display_fraction();
+	
+	
 	
 	echo "unit tests complete";
 
