@@ -2,6 +2,8 @@
 	
 	//// IN PROGRESS, WILL NOT COMPILE
 	
+	include_once "../classes/Fraction.php";
+	
 	$unary_expressions = ["abs"];
 	$binary_expressions = ["+","-","*","/","^","log"];
 	$expressions = [

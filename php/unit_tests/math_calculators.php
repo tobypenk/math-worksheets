@@ -263,7 +263,7 @@
 	
 	
 	$f = new Fraction(1.0,2.0);
-	$f->display_fraction();
+	$f->add(new Fraction(1.0,3.0))->display_fraction();
 	
 	
 	
