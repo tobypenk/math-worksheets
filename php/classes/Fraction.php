@@ -133,6 +133,7 @@
 		    
 		    return (new Fraction($n,$d))->simplify();
 		}
+		
 	}
 	
 ?>
