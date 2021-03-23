@@ -802,10 +802,6 @@
 	    }
 	}
 	
-	
-	
-	
-	
 	function multiply_radical_expression_by_conjugate($r1,$r2) {
 		
 		/*
@@ -842,6 +838,31 @@
 	}
 	
 	
+	
+	
+	
+	function convert_to_base_10($n,$current_base) {
+	    
+	    /*
+		    
+		    converts a number to base 10
+		    
+		    parameters:
+		    	n: the number to convert
+		    	current_base: the current base of n
+		    	
+		    returns:
+		    	numeric representing the converted number
+		    
+		*/
+			    
+	    return base_convert($n, $current_base, 10);
+	    //return parseInt($n,$current_base);
+	}
+	
+	
+	
+	
 	/*
 
 	
@@ -849,22 +870,7 @@
 	
 	
 	
-	function foil_radical_expressions(r_exp1,r_exp2) {
 	
-	    var t1 = r_exp1[0] * r_exp2[0];
-	    var t2 = r_exp1[0] * r_exp2[1];
-	    var t3 = r_exp1[1] * r_exp2[0];
-	    var t4 = r_exp1[1] * r_exp2[1];
-	    
-	    var total = [t1,t2,t3,t4];
-	    var removes = [];
-	    
-	    for (var i=0; i<total.length; i++) {
-	        for (var j=i+1; j<total.length; j++) {
-	            
-	        }
-	    }
-	}
 	
 	function convert_to_base_10(n,current_base) {
 	    
@@ -1125,6 +1131,26 @@
 			if (!is_string($t)) return false;
 		}
 		return true;
+	}
+	
+	
+	function foil_radical_expressions($r1,$r2) {
+	
+		// not yet implemented
+		
+	    $t1 = $r1[0] * $r2[0];
+	    $t2 = $r1[0] * $r2[1];
+	    $t3 = $r1[1] * $r2[0];
+	    $t4 = $r1[1] * $r2[1];
+	    
+	    $total = [$t1,$t2,$t3,$t4];
+	    $removes = [];
+	    
+	    for ($i=0; $i<count($total); $i++) {
+	        for ($j=$i+1; $j<count($total); $j++) {
+	            
+	        }
+	    }
 	}
 	
 	

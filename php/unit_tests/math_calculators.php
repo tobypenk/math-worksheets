@@ -248,6 +248,20 @@
 	assert(multiply_radical_expression_by_conjugate([1,2],["a",2]) == "arrays passed to multiply_radical_expression_by_conjugate must contain all integers");
 	assert(multiply_radical_expression_by_conjugate([1,2],[false,2]) == "arrays passed to multiply_radical_expression_by_conjugate must contain all integers");
 	
+	assert(convert_to_base_10(1,2) == 1);
+	assert(convert_to_base_10(10,2) == 2);
+	assert(convert_to_base_10(11,2) == 3);
+	assert(convert_to_base_10(100000000,2) == 256);
+	assert(convert_to_base_10(10,6) == 6);
+	assert(convert_to_base_10(100,6) == 36);
+	assert(convert_to_base_10(1000,6) == 216);
+	assert(convert_to_base_10("ff",16) == 255);
+	assert(convert_to_base_10("c",13) == 12);
+	assert(convert_to_base_10("cc",13) == 168);
+	assert(convert_to_base_10(0,2) == 0);
+	
+	
+	
 	
 	echo "unit tests complete";
 
