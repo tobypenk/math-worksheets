@@ -93,6 +93,7 @@
 	
 	
 	
+	// add tests of negatives
 	assert((new Fraction(1,2))->simplify()->stringify() == "1/2");
 	assert((new Fraction(3,6))->simplify()->stringify() == "1/2");
 	assert((new Fraction(4,2))->simplify()->stringify() == "2/1");
@@ -104,33 +105,22 @@
 	assert((new Fraction(1,6))->add(new Fraction(1,3))->stringify() == "1/2");
 	assert((new Fraction(6,7))->add(new Fraction(10,11))->stringify() == "136/77");
 	assert((new Fraction(123,456))->add(new Fraction(321,654))->stringify() == "12601/16568");
+	
+	assert((new Fraction(1,2))->subtract(new Fraction(1,2))->stringify() == "0/4");
+	assert((new Fraction(1,2))->subtract(new Fraction(1,3))->stringify() == "1/6");
+	assert((new Fraction(321,654))->subtract(new Fraction(123,456))->stringify() == "3663/16568");
+	
+	assert((new Fraction(1,2))->multiply(new Fraction(1,2))->stringify() == "1/4");
+	assert((new Fraction(1,2))->multiply(new Fraction(1,3))->stringify() == "1/6");
+	assert((new Fraction(321,654))->multiply(new Fraction(123,456))->stringify() == "4387/33136");
+	
+	assert((new Fraction(1,2))->divide(new Fraction(1,2))->stringify() == "1/1");
+	assert((new Fraction(1,2))->divide(new Fraction(1,3))->stringify() == "3/2");
+	assert((new Fraction(321,654))->divide(new Fraction(123,456))->stringify() == "8132/4469");
 
 	
-	
-	
-	assert(implode(",",subtract_fractions([1,2],[1,2])) == "0,4");
-	assert(implode(",",subtract_fractions([1,2],[1,3])) == "1,6");
-	assert(implode(",",subtract_fractions([321,654],[123,456])) == "3663,16568");
-	assert(subtract_fractions([1,2],[1]) == "input length error in subtract_fractions");
-	assert(subtract_fractions([1],[1,2]) == "input length error in subtract_fractions");
-	assert(subtract_fractions([1.5,2],[1,1]) == "type error in subtract_fractions");
-	assert(subtract_fractions([1,1],[1,"a"]) == "type error in subtract_fractions");
-	
-	assert(implode(",",multiply_fractions([1,2],[1,2])) == "1,4");
-	assert(implode(",",multiply_fractions([1,2],[1,3])) == "1,6");
-	assert(implode(",",multiply_fractions([321,654],[123,456])) == "4387,33136");
-	assert(multiply_fractions([1,2],[1]) == "input length error in multiply_fractions");
-	assert(multiply_fractions([1],[1,2]) == "input length error in multiply_fractions");
-	assert(multiply_fractions([1.5,2],[1,1]) == "type error in multiply_fractions");
-	assert(multiply_fractions([1,1],[1,"a"]) == "type error in multiply_fractions");
-	
-	assert(implode(",",divide_fractions([1,2],[1,2])) == "1,1");
-	assert(implode(",",divide_fractions([1,2],[1,3])) == "3,2");
-	assert(implode(",",divide_fractions([321,654],[123,456])) == "8132,4469");
-	assert(divide_fractions([1,2],[1]) == "input length error in divide_fractions");
-	assert(divide_fractions([1],[1,2]) == "input length error in divide_fractions");
-	assert(divide_fractions([1.5,2],[1,1]) == "type error in divide_fractions");
-	assert(divide_fractions([1,1],[1,"a"]) == "type error in divide_fractions");
+
+
 	
 	
 	
