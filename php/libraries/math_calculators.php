@@ -337,7 +337,7 @@
 	    return true;
 	}
 	
-	//done
+	//to deprecate
 	function simplify_fraction($n_d_array) {
 		
 		/*

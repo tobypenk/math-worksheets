@@ -11,7 +11,11 @@
 	    }
 	    
 	    public function display(): void {
-	        echo $this->numerator . "/" . $this->denominator;
+	        echo $this->stringify();
+	    }
+	    
+	    public function stringify(): string {
+	        return $this->numerator . "/" . $this->denominator;
 	    }
 	    
 	    public function add(Fraction $addend): Fraction {
@@ -142,8 +146,6 @@
 		    
 		    return (new Fraction($n,$d))->simplify();
 		}
-	
-		
 	}
 	
 	

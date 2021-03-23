@@ -87,33 +87,26 @@
 	assert(implode(",",array_overlap([1,2,3,"a"],[1,2,3,"b"])) == "1,2,3");
 	assert(implode(",",array_overlap([1,2,3,"a"],[1,2,3,"a"])) == "1,2,3,a");
 	
-	assert(simplify_fraction([]) == "input length error in simplify_fraction");
-	assert(simplify_fraction([1]) == "input length error in simplify_fraction");
-	assert(simplify_fraction([1,2,3]) == "input length error in simplify_fraction");
-	assert(implode(",",simplify_fraction([1,2])) == "1,2");
-	assert(implode(",",simplify_fraction([4,2])) == "2,1");
-	assert(implode(",",simplify_fraction([2,12])) == "1,6");
-	assert(implode(",",simplify_fraction([3803,1234567890])) == "1,324630");
+	
+	
+	
+	
+	
+	
+	assert((new Fraction(1,2))->simplify()->stringify() == "1/2");
+	assert((new Fraction(3,6))->simplify()->stringify() == "1/2");
+	assert((new Fraction(4,2))->simplify()->stringify() == "2/1");
+	assert((new Fraction(2,12))->simplify()->stringify() == "1/6");
+	assert((new Fraction(3803,1234567890))->simplify()->stringify() == "1/324630");
+	
+	assert((new Fraction(1,2))->add(new Fraction(1,2))->stringify() == "1/1");
+	assert((new Fraction(2,3))->add(new Fraction(3,4))->stringify() == "17/12");
+	assert((new Fraction(1,6))->add(new Fraction(1,3))->stringify() == "1/2");
+	assert((new Fraction(6,7))->add(new Fraction(10,11))->stringify() == "136/77");
+	assert((new Fraction(123,456))->add(new Fraction(321,654))->stringify() == "12601/16568");
 
-	assert(arrays_are_equal([],[]));
-	assert(arrays_are_equal("a",[]) == "type error in arrays_are_equal");
-	assert(arrays_are_equal([],0) == "type error in arrays_are_equal");
-	assert(arrays_are_equal([1],[1]));
-	assert(arrays_are_equal([1234567890,1,3,5,7,9],[1234567890,1,3,5,7,9]));
-	assert(arrays_are_equal([1,"a",1.5],[1,"a",1.5]));
-	assert(!arrays_are_equal([1,"a"],[1,"a",1.5]));
-	assert(!arrays_are_equal([2],[3]));
-	assert(!arrays_are_equal([2,3],[3,4]));
-		
-	assert(implode(",",add_fractions([1,2],[1,2])) == "1,1");
-	assert(implode(",",add_fractions([2,3],[3,4])) == "17,12");
-	assert(implode(",",add_fractions([1,6],[1,3])) == "1,2");
-	assert(implode(",",add_fractions([6,7],[10,11])) == "136,77");
-	assert(implode(",",add_fractions([123,456],[321,654])) == "12601,16568");
-	assert(add_fractions([1,2],[1]) == "input length error in add_fractions");
-	assert(add_fractions([1],[1,2]) == "input length error in add_fractions");
-	assert(add_fractions([1.5,2],[1,1]) == "type error in add_fractions");
-	assert(add_fractions([1,1],[1,"a"]) == "type error in add_fractions");
+	
+	
 	
 	assert(implode(",",subtract_fractions([1,2],[1,2])) == "0,4");
 	assert(implode(",",subtract_fractions([1,2],[1,3])) == "1,6");
@@ -138,6 +131,25 @@
 	assert(divide_fractions([1],[1,2]) == "input length error in divide_fractions");
 	assert(divide_fractions([1.5,2],[1,1]) == "type error in divide_fractions");
 	assert(divide_fractions([1,1],[1,"a"]) == "type error in divide_fractions");
+	
+	
+	
+	
+	
+
+	assert(arrays_are_equal([],[]));
+	assert(arrays_are_equal("a",[]) == "type error in arrays_are_equal");
+	assert(arrays_are_equal([],0) == "type error in arrays_are_equal");
+	assert(arrays_are_equal([1],[1]));
+	assert(arrays_are_equal([1234567890,1,3,5,7,9],[1234567890,1,3,5,7,9]));
+	assert(arrays_are_equal([1,"a",1.5],[1,"a",1.5]));
+	assert(!arrays_are_equal([1,"a"],[1,"a",1.5]));
+	assert(!arrays_are_equal([2],[3]));
+	assert(!arrays_are_equal([2,3],[3,4]));
+		
+	
+	
+	
 	
 	assert(implode(",",apply_quadratic_formula(1,2,1)) == "-1");
 	assert(implode(",",apply_quadratic_formula(1,0,-1)) == "1,-1");
@@ -263,6 +275,7 @@
 	
 	
 
+/*
 	$x = (new Fraction(250,400))->
 		simplify()->
 		subtract(new Fraction(1,4))->
@@ -270,6 +283,7 @@
 		divide(new Fraction(1,32));
 		
 	$x->display();
+*/
 	
 	
 	echo "unit tests complete";
