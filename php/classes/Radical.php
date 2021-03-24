@@ -23,39 +23,37 @@
 		    return $this->index." root ".$this->radicand;
 	    }
 	    
-	    //public function multiply(Radical $multiple): Radical {
+		public function multiply(Radical $multiple): Radical {
 		
 			/*
 				
-				multiplies two radical expressions
+				gives the product of this and another radical
 				
 				parameters:
-					r1: 2-length array of integers representing a radical expression (r1[0]-root-r1[1])
-					r2: 2-length array of integers representing a radical expression (r2[0]-root-r2[1])
+					multiple: radical by which to multiply
 					
 				returns:
-					2-length array representing the simplified product
+					radical representing the product of this and multiple
 				
 			*/
 			
-		    //$i = $this->index * $multiple->index;
-		    //$r = $this->radicand * $multiple->radicand;
+		    $i = $this->index * $multiple->index;
+		    $r = $this->radicand * $multiple->radicand;
 		    
-		    //return (new Radical($i,$r))->simplify();
-		//}
+		    return (new Radical($i,$r))->simplify();
+		}
 		
 		public function simplify(): Radical {
 		
 			/*
 				
-				returns a radical in simplest form; e.g., 2-root-50 becomes 10-root-2
+				modifies this to simplest form; e.g., 2-root-50 becomes 10-root-2
 				
 				parameters:
-					c: the coefficient outside the radical
-					r: the constant within the radical
+					none (takes instance parameters)
 					
 				returns:
-					2-length array with simplified c and r
+					none (modifies this in place)
 				
 			*/
 		    

@@ -124,6 +124,26 @@
 	assert((new Fraction(321,654))->divide(new Fraction(123,456))->stringify() == "8132/4469");
 
 	
+	
+	
+	/// TO DO: simplify_radical should accept non-integer arguments to the non-root coefficient
+	assert((new Radical(10,2))->simplify()->stringify() == "10 root 2");
+	assert((new Radical(2,50))->simplify()->stringify() == "10 root 2");
+	assert((new Radical(1,1524155677489))->simplify()->stringify() == "1234567 root 1");
+	assert((new Radical(2,3048311354978))->simplify()->stringify() == "2469134 root 2");
+	
+	assert((new Radical(1,1))->multiply(new Radical(1,1))->stringify() == "1 root 1");
+	assert((new Radical(1,2))->multiply(new Radical(1,2))->stringify() == "2 root 1");
+	assert((new Radical(1,15))->multiply(new Radical(1,21))->stringify() == "3 root 35");
+	assert((new Radical(11,6))->multiply(new Radical(2,14))->stringify() == "44 root 21");
+	assert(
+		(new Radical(12,34))->multiply(new Radical(56,78))->stringify() 
+		== 
+		(new Radical(56,78))->multiply(new Radical(12,34))->stringify()
+		
+	);
+	assert((new Radical(-1,1))->multiply(new Radical(1,1))->stringify() == "-1 root 1");
+	
 
 
 	
@@ -165,11 +185,7 @@
 	
 	
 	
-	/// TO DO: simplify_radical should accept non-integer arguments to the non-root coefficient
-	assert((new Radical(10,2))->simplify()->stringify() == "10 root 2");
-	assert((new Radical(2,50))->simplify()->stringify() == "10 root 2");
-	assert((new Radical(1,1524155677489))->simplify()->stringify() == "1234567 root 1");
-	assert((new Radical(2,3048311354978))->simplify()->stringify() == "2469134 root 2");
+	
 
 	
 	
@@ -206,21 +222,7 @@
 	assert(differentiate_polynomial([1,1,1,0,"a",1]) == "type error in parameters to differentiate_polynomial");
 	assert(differentiate_polynomial(0) == "type error in differentiate_polynomial");
 	
-	assert(implode(",",multiply_radicals([1,1],[1,1])) == "1,1");
-	assert(implode(",",multiply_radicals([1,2],[1,2])) == "2,1");
-	assert(implode(",",multiply_radicals([1,15],[1,21])) == "3,35");
-	assert(implode(",",multiply_radicals([11,6],[2,14])) == "44,21");
-	assert(implode(",",multiply_radicals([1,1],[1,1])) == "1,1");
-	assert(implode(",",multiply_radicals([-1,1],[1,1])) == "-1,1");
-	assert(multiply_radicals([-1.5,1],[1.5,1]) == "arrays passed to multiply_radicals must contain all integers");
-	assert(multiply_radicals([1],[1,2]) == "multiply_radicals expects 2 2-length arrays");
-	assert(multiply_radicals(["1",2],[2]) == "multiply_radicals expects 2 2-length arrays");
-	assert(multiply_radicals([],[]) == "multiply_radicals expects 2 2-length arrays");
-	assert(multiply_radicals(0,[1,2]) == "parameters to multiply_radicals must be arrays");
-	assert(multiply_radicals([1,2],"X") == "parameters to multiply_radicals must be arrays");
-	assert(multiply_radicals([1,2],true) == "parameters to multiply_radicals must be arrays");
-	assert(multiply_radicals([1,2],["a",2]) == "arrays passed to multiply_radicals must contain all integers");
-	assert(multiply_radicals([1,2],[false,2]) == "arrays passed to multiply_radicals must contain all integers");
+	
 	
 	assert(implode(",",add_radicals([1,1],[1,1])) == "2,1");
 	assert(implode(",",add_radicals([1,1],[2,1])) == "3,1");
