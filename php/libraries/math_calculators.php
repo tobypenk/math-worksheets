@@ -619,6 +619,7 @@
 	    return simplify_radical($r1[0] * $r2[0],$r1[1] * $r2[1]);
 	}
 	
+	//to deprecate
 	function add_radicals($r1,$r2) {
 		
 		/*
@@ -656,6 +657,7 @@
 	    }
 	}
 	
+	//to do
 	function multiply_radical_expression_by_conjugate($r1,$r2) {
 		
 		/*
@@ -690,6 +692,16 @@
 	    
 	    return $t1[0] + $t2[0];
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	function convert_to_base_10($n,$current_base) {
 	    

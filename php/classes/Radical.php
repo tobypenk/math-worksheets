@@ -90,6 +90,38 @@
 			    return $this;
 		    }
 		}
+		
+		public function square(): int {
+			
+			//to do
+			
+			$x = $this->multiply($this);
+			return $x->index * $x->radicand;
+		}
+		
+		public function multiply_by_conjugate(Radical $multiple) {
+			//to do
+			/*
+				
+				finds the conjugate of two radical expressions - (c1-root-r1 squared minus c2-root-r2 squared)
+					used for rationalizing radical expressions
+				
+				parameters:
+					r1: 2-length array of integers representing [c1,r1]
+					r2: 2-length array of integers representing [c2,r2]
+				
+				returns:
+					integer representing the conjugate of the two radicals
+					
+			*/
+		
+		    $t1 = $this->square();
+		    $t2 = $multiple->square();
+		    
+		    return $t1 - $t2;
+		    
+		    //return new Radical(1,1);
+		}
 	}
 	
 	
