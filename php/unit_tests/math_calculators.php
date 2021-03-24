@@ -150,8 +150,6 @@
 	assert((new Radical(2,50))->simplify()->add(new Radical(7,50))->stringify() == "45 root 2");
 	assert((new Radical(-2,50))->simplify()->add(new Radical(7,50))->stringify() == "25 root 2");
 	assert((new Radical(7,45))->simplify()->add(new Radical(3,125))->stringify() == "36 root 5");
-
-	
 	
 	assert((new Radical(2,7))->simplify()->multiply_by_conjugate(new Radical(5,3)) == -47);
 	assert((new Radical(1,1))->simplify()->multiply_by_conjugate(new Radical(1,1)) == 0);
@@ -245,7 +243,12 @@
 	assert(convert_to_base_10("cc",13) == 168);
 	assert(convert_to_base_10(0,2) == 0);
 	
-	
+	assert(convert_from_base_10(10,2) == 1010);
+	assert(convert_from_base_10(256,2) == 100000000);
+	assert(convert_from_base_10(15,16) == "f");
+	assert(convert_from_base_10(255,16) == "ff");
+	assert(convert_from_base_10(16,16) == 10);
+	assert(convert_from_base_10(0,6) == 0);
 
 	
 	

@@ -719,10 +719,27 @@
 		*/
 			    
 	    return base_convert($n, $current_base, 10);
-	    //return parseInt($n,$current_base);
+	    
 	}
 	
-	
+	function convert_from_base_10($n,$target_base) {
+		
+		/*
+		    
+		    converts a number to base 10
+		    
+		    parameters:
+		    	n: the number to convert
+		    	current_base: the current base of n
+		    	
+		    returns:
+		    	numeric representing the converted number
+		    
+		*/
+			    
+	    return base_convert($n, 10, $target_base);
+	    
+	}
 	
 	
 	
@@ -740,10 +757,7 @@
 	
 	/*
 	
-	function convert_to_base_10(n,current_base) {
-	    
-	    return parseInt(n,current_base);
-	}
+	
 	
 	function convert_from_base_10(n,intended_base) {
 	    
