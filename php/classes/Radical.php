@@ -66,7 +66,32 @@
 		    
 		    return $this;
 		}
+		
+		public function add(Radical $addend): Radical {
+		
+			/*
+				
+				adds another radical to this (assumes radicands are compatible)
+				
+				parameters:
+					none (uses instance data)
+					
+				returns:
+					radical representing the sum of this and addend
+				
+			*/
+			
+		    $r1 = $this->simplify();
+		    $r2 = $addend->simplify();
+		    
+		    if ($this->radicand == $addend->radicand) {
+			    return (new Radical($this->index + $addend->index, $this->radicand));
+		    } else {
+			    return $this;
+		    }
+		}
 	}
+	
 	
 	
 ?>

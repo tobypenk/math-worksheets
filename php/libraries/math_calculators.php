@@ -555,6 +555,10 @@
 	
 	
 	
+	
+	
+	
+	//to deprecate
 	function simplify_radical($c,$r) {
 		
 		/*
@@ -584,6 +588,7 @@
 	    return [$c,$r];
 	}
 	
+	//to deprecate
 	function multiply_radicals($r1,$r2) {
 		
 		/*

@@ -144,6 +144,36 @@
 	);
 	assert((new Radical(-1,1))->multiply(new Radical(1,1))->stringify() == "-1 root 1");
 	
+	assert((new Radical(1,1))->simplify()->add(new Radical(1,1))->stringify() == "2 root 1");
+	assert((new Radical(1,1))->simplify()->add(new Radical(2,1))->stringify() == "3 root 1");
+	assert((new Radical(1,5))->simplify()->add(new Radical(1,5))->stringify() == "2 root 5");
+	assert((new Radical(2,50))->simplify()->add(new Radical(7,50))->stringify() == "45 root 2");
+	assert((new Radical(-2,50))->simplify()->add(new Radical(7,50))->stringify() == "25 root 2");
+	assert((new Radical(7,45))->simplify()->add(new Radical(3,125))->stringify() == "36 root 5");
+
+
+
+
+
+	assert(multiply_radical_expression_by_conjugate([2,7],[5,3]) == -47);
+	assert(multiply_radical_expression_by_conjugate([1,1],[1,1]) == 0);
+	assert(multiply_radical_expression_by_conjugate([1,2],[3,4]) == -34);
+	assert(multiply_radical_expression_by_conjugate([3,5],[7,11]) == -494);
+	assert(multiply_radical_expression_by_conjugate([67,109],[53,59]) == 323570);
+	assert(multiply_radical_expression_by_conjugate([-5,121],[3,12]) == 2917);
+	assert(multiply_radical_expression_by_conjugate([-1.5,1],[1.5,1]) == "arrays passed to multiply_radical_expression_by_conjugate must contain all integers");
+	assert(multiply_radical_expression_by_conjugate([1],[1,2]) == "multiply_radical_expression_by_conjugate expects 2 2-length arrays");
+	assert(multiply_radical_expression_by_conjugate(["1",2],[2]) == "multiply_radical_expression_by_conjugate expects 2 2-length arrays");
+	assert(multiply_radical_expression_by_conjugate([],[]) == "multiply_radical_expression_by_conjugate expects 2 2-length arrays");
+	assert(multiply_radical_expression_by_conjugate(0,[1,2]) == "parameters to multiply_radical_expression_by_conjugate must be arrays");
+	assert(multiply_radical_expression_by_conjugate([1,2],"X") == "parameters to multiply_radical_expression_by_conjugate must be arrays");
+	assert(multiply_radical_expression_by_conjugate([1,2],true) == "parameters to multiply_radical_expression_by_conjugate must be arrays");
+	assert(multiply_radical_expression_by_conjugate([1,2],["a",2]) == "arrays passed to multiply_radical_expression_by_conjugate must contain all integers");
+	assert(multiply_radical_expression_by_conjugate([1,2],[false,2]) == "arrays passed to multiply_radical_expression_by_conjugate must contain all integers");
+
+
+
+
 
 
 	
@@ -183,15 +213,6 @@
 	assert(implode(",",extract_pairs([1,1,2,2,3,3])) == "1,2,3");
 	assert(extract_pairs(0) == "type error in extract_pairs");
 	
-	
-	
-	
-
-	
-	
-	
-	
-	
 	assert(is_prime(2));
 	assert(is_prime(3));
 	assert(is_prime(5));
@@ -221,39 +242,6 @@
 	assert(implode(",",differentiate_polynomial([1,1,1,0,1,1])) == "5,4,3,0,1");
 	assert(differentiate_polynomial([1,1,1,0,"a",1]) == "type error in parameters to differentiate_polynomial");
 	assert(differentiate_polynomial(0) == "type error in differentiate_polynomial");
-	
-	
-	
-	assert(implode(",",add_radicals([1,1],[1,1])) == "2,1");
-	assert(implode(",",add_radicals([1,1],[2,1])) == "3,1");
-	assert(implode(",",add_radicals([1,5],[1,5])) == "2,5");
-	assert(implode(",",add_radicals([2,50],[7,50])) == "45,2");
-	assert(implode(",",add_radicals([-2,50],[7,50])) == "25,2");
-	assert(add_radicals([-1.5,1],[1.5,1]) == "arrays passed to add_radicals must contain all integers");
-	assert(add_radicals([1],[1,2]) == "add_radicals expects 2 2-length arrays");
-	assert(add_radicals(["1",2],[2]) == "add_radicals expects 2 2-length arrays");
-	assert(add_radicals([],[]) == "add_radicals expects 2 2-length arrays");
-	assert(add_radicals(0,[1,2]) == "parameters to add_radicals must be arrays");
-	assert(add_radicals([1,2],"X") == "parameters to add_radicals must be arrays");
-	assert(add_radicals([1,2],true) == "parameters to add_radicals must be arrays");
-	assert(add_radicals([1,2],["a",2]) == "arrays passed to add_radicals must contain all integers");
-	assert(add_radicals([1,2],[false,2]) == "arrays passed to add_radicals must contain all integers");
-	
-	assert(multiply_radical_expression_by_conjugate([2,7],[5,3]) == -47);
-	assert(multiply_radical_expression_by_conjugate([1,1],[1,1]) == 0);
-	assert(multiply_radical_expression_by_conjugate([1,2],[3,4]) == -34);
-	assert(multiply_radical_expression_by_conjugate([3,5],[7,11]) == -494);
-	assert(multiply_radical_expression_by_conjugate([67,109],[53,59]) == 323570);
-	assert(multiply_radical_expression_by_conjugate([-5,121],[3,12]) == 2917);
-	assert(multiply_radical_expression_by_conjugate([-1.5,1],[1.5,1]) == "arrays passed to multiply_radical_expression_by_conjugate must contain all integers");
-	assert(multiply_radical_expression_by_conjugate([1],[1,2]) == "multiply_radical_expression_by_conjugate expects 2 2-length arrays");
-	assert(multiply_radical_expression_by_conjugate(["1",2],[2]) == "multiply_radical_expression_by_conjugate expects 2 2-length arrays");
-	assert(multiply_radical_expression_by_conjugate([],[]) == "multiply_radical_expression_by_conjugate expects 2 2-length arrays");
-	assert(multiply_radical_expression_by_conjugate(0,[1,2]) == "parameters to multiply_radical_expression_by_conjugate must be arrays");
-	assert(multiply_radical_expression_by_conjugate([1,2],"X") == "parameters to multiply_radical_expression_by_conjugate must be arrays");
-	assert(multiply_radical_expression_by_conjugate([1,2],true) == "parameters to multiply_radical_expression_by_conjugate must be arrays");
-	assert(multiply_radical_expression_by_conjugate([1,2],["a",2]) == "arrays passed to multiply_radical_expression_by_conjugate must contain all integers");
-	assert(multiply_radical_expression_by_conjugate([1,2],[false,2]) == "arrays passed to multiply_radical_expression_by_conjugate must contain all integers");
 	
 	assert(convert_to_base_10(1,2) == 1);
 	assert(convert_to_base_10(10,2) == 2);
