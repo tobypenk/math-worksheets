@@ -1,11 +1,14 @@
 <?php
 	
+	// to do - add a show as decimal function
+	
 	class Fraction {
 
 	    public int $numerator;
 	    public int $denominator;
 	
 	    public function __construct(int $numerator, int $denominator) {
+		    		    
 	        $this->numerator = $numerator;
 	        $this->denominator = $denominator;
 	    }

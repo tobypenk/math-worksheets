@@ -3,6 +3,7 @@
 	//// IN PROGRESS, WILL NOT COMPILE
 	
 	include_once "../classes/Fraction.php";
+	include_once "../classes/Radical.php";
 	
 	$unary_expressions = ["abs"];
 	$binary_expressions = ["+","-","*","/","^","log"];
@@ -337,170 +338,6 @@
 	    return true;
 	}
 	
-	//to deprecate
-	function simplify_fraction($n_d_array) {
-		
-		/*
-			
-			reduces a fraction to simplest form (i.e., the form in which numerator and denominator share no factors)
-			
-			parameters:
-				n_d_array: 2-length array of ints
-				
-			returns:
-				2-length array representing the simplified fraction. 0th element is numerator; 1st element is denominator.
-			
-		*/
-		
-		if (count($n_d_array) != 2) return "input length error in simplify_fraction";
-		if (!all_integers($n_d_array)) return "type error in simplify_fraction";
-	    
-	    $n_pf = prime_factorization($n_d_array[0]);
-	    $d_pf = prime_factorization($n_d_array[1]);
-	    if (is_null($n_pf) | is_null($d_pf)) {
-		    $common_factors = [];
-	    } else {
-		    $common_factors = array_overlap($n_pf,$d_pf);
-	    }
-	    
-	    
-	    foreach ($common_factors as $i) {
-	        $n_d_array[0] /= $i;
-	        $n_d_array[1] /= $i;
-	    }
-	    
-	    if ($n_d_array[1] < 0 && $n_d_array[0] > 0) {
-	        $n_d_array[0] *= -1;
-	        $n_d_array[1] *= -1;
-	    }
-	    
-	    return $n_d_array;
-	}
-	
-	//to deprecate
-	function add_fractions($f1,$f2) {
-	    
-	    /*
-		    
-		    adds two fractions, which may or may not have common denominators
-		    
-		    parameters:
-		    	f1: 2-length array of integers
-		    	f2: 2-length array of integers
-		    	for f1 and f2, array[0] is the numerator; array[1] is the denominator
-		    
-		    returns:
-		    	2-length array representing the summed, simplified fraction
-		    	
-		*/
-	    
-	    if (count($f1) != 2 | count($f2) != 2) {
-		    return "input length error in add_fractions";
-	    }
-	    
-	    if (!all_integers($f1) | !all_integers($f2)) {
-		    return "type error in add_fractions";
-	    }
-	    
-	    $n = $f1[0] * $f2[1] + $f2[0] * $f1[1];
-	    $d = $f1[1] * $f2[1];
-	    
-	    return simplify_fraction([$n,$d]);
-	}
-	
-	//done
-	function subtract_fractions($f1,$f2) {
-		
-		/*
-		    
-		    subtracts two fractions, which may or may not have common denominators
-		    
-		    parameters:
-		    	f1: 2-length array of integers
-		    	f2: 2-length array of integers
-		    	for f1 and f2, array[0] is the numerator; array[1] is the denominator
-		    
-		    returns:
-		    	2-length array representing f1 - f2
-		    	
-		*/
-		
-		if (count($f1) != 2 | count($f2) != 2) {
-		    return "input length error in subtract_fractions";
-	    }
-	    
-	    if (!all_integers($f1) | !all_integers($f2)) {
-		    return "type error in subtract_fractions";
-	    }
-	    
-	    $n = $f1[0]  * $f2[1] - $f2[0] * $f1[1];
-	    $d = $f1[1] * $f2[1];
-	    
-	    return simplify_fraction([$n,$d]);
-	}
-	
-	//done
-	function multiply_fractions($f1,$f2) {
-		
-		/*
-		    
-		    multiplies two fractions
-		    
-		    parameters:
-		    	f1: 2-length array of integers
-		    	f2: 2-length array of integers
-		    	for f1 and f2, array[0] is the numerator; array[1] is the denominator
-		    
-		    returns:
-		    	2-length array representing f1 * f2
-		    	
-		*/
-		
-		if (count($f1) != 2 | count($f2) != 2) {
-		    return "input length error in multiply_fractions";
-	    }
-	    
-	    if (!all_integers($f1) | !all_integers($f2)) {
-		    return "type error in multiply_fractions";
-	    }
-	    
-	    $n = $f1[0] * $f2[0];
-	    $d = $f1[1] * $f2[1];
-	    
-	    return simplify_fraction([$n,$d]);
-	}
-	
-	//done
-	function divide_fractions($f1,$f2) {
-		
-		/*
-		    
-		    divides two fractions, which may or may not have common denominators
-		    
-		    parameters:
-		    	f1: 2-length array of integers
-		    	f2: 2-length array of integers
-		    	for f1 and f2, array[0] is the numerator; array[1] is the denominator
-		    
-		    returns:
-		    	2-length array representing f1 / f2
-		    	
-		*/
-		
-		if (count($f1) != 2 | count($f2) != 2) {
-		    return "input length error in divide_fractions";
-	    }
-	    
-	    if (!all_integers($f1) | !all_integers($f2)) {
-		    return "type error in divide_fractions";
-	    }
-	    
-	    $n = $f1[0] * $f2[1];
-	    $d = $f1[1] * $f2[0];
-	    
-	    return simplify_fraction([$n,$d]);
-	}
-	
 	function apply_quadratic_formula($a=0,$b=0,$c=0,$precision=2) {
 		
 		/*
@@ -621,34 +458,7 @@
 	    return $total;
 	}
 		
-	function simplify_radical($c,$r) {
-		
-		/*
-			
-			returns a radical in simplest form; e.g., 2-root-50 becomes 10-root-2
-			
-			parameters:
-				c: the coefficient outside the radical
-				r: the constant within the radical
-				
-			returns:
-				2-length array with simplified c and r
-			
-		*/
-		
-		if (!is_integer($c) | !is_integer($r)) {
-			return "type error in simplify_radical";
-		}
-	    
-	    $squares = extract_pairs(prime_factorization($r));
-	    
-	    for ($i=0; $i<count($squares); $i++) {
-	        $c *= $squares[$i];
-	        $r /= ($squares[$i] * $squares[$i]);
-	    }
-	    
-	    return [$c,$r];
-	}
+
 	
 	function is_prime($n) {
 		
@@ -740,6 +550,38 @@
 	    }
 	    array_pop($coefficient_array);
 	    return $coefficient_array;
+	}
+	
+	
+	
+	
+	function simplify_radical($c,$r) {
+		
+		/*
+			
+			returns a radical in simplest form; e.g., 2-root-50 becomes 10-root-2
+			
+			parameters:
+				c: the coefficient outside the radical
+				r: the constant within the radical
+				
+			returns:
+				2-length array with simplified c and r
+			
+		*/
+		
+		if (!is_integer($c) | !is_integer($r)) {
+			return "type error in simplify_radical";
+		}
+	    
+	    $squares = extract_pairs(prime_factorization($r));
+	    
+	    for ($i=0; $i<count($squares); $i++) {
+	        $c *= $squares[$i];
+	        $r /= ($squares[$i] * $squares[$i]);
+	    }
+	    
+	    return [$c,$r];
 	}
 	
 	function multiply_radicals($r1,$r2) {
@@ -1211,6 +1053,176 @@
 	
 	
 	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	//to deprecate:
+	
+	function simplify_fraction($n_d_array) {
+		
+		/*
+			
+			reduces a fraction to simplest form (i.e., the form in which numerator and denominator share no factors)
+			
+			parameters:
+				n_d_array: 2-length array of ints
+				
+			returns:
+				2-length array representing the simplified fraction. 0th element is numerator; 1st element is denominator.
+			
+		*/
+		
+		if (count($n_d_array) != 2) return "input length error in simplify_fraction";
+		if (!all_integers($n_d_array)) return "type error in simplify_fraction";
+	    
+	    $n_pf = prime_factorization($n_d_array[0]);
+	    $d_pf = prime_factorization($n_d_array[1]);
+	    if (is_null($n_pf) | is_null($d_pf)) {
+		    $common_factors = [];
+	    } else {
+		    $common_factors = array_overlap($n_pf,$d_pf);
+	    }
+	    
+	    
+	    foreach ($common_factors as $i) {
+	        $n_d_array[0] /= $i;
+	        $n_d_array[1] /= $i;
+	    }
+	    
+	    if ($n_d_array[1] < 0 && $n_d_array[0] > 0) {
+	        $n_d_array[0] *= -1;
+	        $n_d_array[1] *= -1;
+	    }
+	    
+	    return $n_d_array;
+	}
+	
+	function add_fractions($f1,$f2) {
+	    
+	    /*
+		    
+		    adds two fractions, which may or may not have common denominators
+		    
+		    parameters:
+		    	f1: 2-length array of integers
+		    	f2: 2-length array of integers
+		    	for f1 and f2, array[0] is the numerator; array[1] is the denominator
+		    
+		    returns:
+		    	2-length array representing the summed, simplified fraction
+		    	
+		*/
+	    
+	    if (count($f1) != 2 | count($f2) != 2) {
+		    return "input length error in add_fractions";
+	    }
+	    
+	    if (!all_integers($f1) | !all_integers($f2)) {
+		    return "type error in add_fractions";
+	    }
+	    
+	    $n = $f1[0] * $f2[1] + $f2[0] * $f1[1];
+	    $d = $f1[1] * $f2[1];
+	    
+	    return simplify_fraction([$n,$d]);
+	}
+	
+	function subtract_fractions($f1,$f2) {
+		
+		/*
+		    
+		    subtracts two fractions, which may or may not have common denominators
+		    
+		    parameters:
+		    	f1: 2-length array of integers
+		    	f2: 2-length array of integers
+		    	for f1 and f2, array[0] is the numerator; array[1] is the denominator
+		    
+		    returns:
+		    	2-length array representing f1 - f2
+		    	
+		*/
+		
+		if (count($f1) != 2 | count($f2) != 2) {
+		    return "input length error in subtract_fractions";
+	    }
+	    
+	    if (!all_integers($f1) | !all_integers($f2)) {
+		    return "type error in subtract_fractions";
+	    }
+	    
+	    $n = $f1[0]  * $f2[1] - $f2[0] * $f1[1];
+	    $d = $f1[1] * $f2[1];
+	    
+	    return simplify_fraction([$n,$d]);
+	}
+	
+	function multiply_fractions($f1,$f2) {
+		
+		/*
+		    
+		    multiplies two fractions
+		    
+		    parameters:
+		    	f1: 2-length array of integers
+		    	f2: 2-length array of integers
+		    	for f1 and f2, array[0] is the numerator; array[1] is the denominator
+		    
+		    returns:
+		    	2-length array representing f1 * f2
+		    	
+		*/
+		
+		if (count($f1) != 2 | count($f2) != 2) {
+		    return "input length error in multiply_fractions";
+	    }
+	    
+	    if (!all_integers($f1) | !all_integers($f2)) {
+		    return "type error in multiply_fractions";
+	    }
+	    
+	    $n = $f1[0] * $f2[0];
+	    $d = $f1[1] * $f2[1];
+	    
+	    return simplify_fraction([$n,$d]);
+	}
+	
+	function divide_fractions($f1,$f2) {
+		
+		/*
+		    
+		    divides two fractions, which may or may not have common denominators
+		    
+		    parameters:
+		    	f1: 2-length array of integers
+		    	f2: 2-length array of integers
+		    	for f1 and f2, array[0] is the numerator; array[1] is the denominator
+		    
+		    returns:
+		    	2-length array representing f1 / f2
+		    	
+		*/
+		
+		if (count($f1) != 2 | count($f2) != 2) {
+		    return "input length error in divide_fractions";
+	    }
+	    
+	    if (!all_integers($f1) | !all_integers($f2)) {
+		    return "type error in divide_fractions";
+	    }
+	    
+	    $n = $f1[0] * $f2[1];
+	    $d = $f1[1] * $f2[0];
+	    
+	    return simplify_fraction([$n,$d]);
+	}
 	
 	
 	

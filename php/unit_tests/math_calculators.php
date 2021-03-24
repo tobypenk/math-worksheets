@@ -141,10 +141,6 @@
 	assert(!arrays_are_equal([1,"a"],[1,"a",1.5]));
 	assert(!arrays_are_equal([2],[3]));
 	assert(!arrays_are_equal([2,3],[3,4]));
-		
-	
-	
-	
 	
 	assert(implode(",",apply_quadratic_formula(1,2,1)) == "-1");
 	assert(implode(",",apply_quadratic_formula(1,0,-1)) == "1,-1");
@@ -170,13 +166,15 @@
 	
 	
 	/// TO DO: simplify_radical should accept non-integer arguments to the non-root coefficient
-	assert(implode(",",simplify_radical(2,50)) == "10,2");
-	assert(implode(",",simplify_radical(10,2)) == "10,2");
-	assert(implode(",",simplify_radical(1,1524155677489)) == "1234567,1");
-	assert(implode(",",simplify_radical(2,3048311354978)) == "2469134,2");
-	assert(simplify_radical("a",50) == "type error in simplify_radical");
-	assert(simplify_radical(2,"x") == "type error in simplify_radical");
-	assert(simplify_radical("h","t") == "type error in simplify_radical");
+	assert((new Radical(10,2))->simplify()->stringify() == "10 root 2");
+	assert((new Radical(2,50))->simplify()->stringify() == "10 root 2");
+	assert((new Radical(1,1524155677489))->simplify()->stringify() == "1234567 root 1");
+	assert((new Radical(2,3048311354978))->simplify()->stringify() == "2469134 root 2");
+
+	
+	
+	
+	
 	
 	assert(is_prime(2));
 	assert(is_prime(3));
@@ -268,17 +266,7 @@
 	assert(convert_to_base_10(0,2) == 0);
 	
 	
-	
 
-/*
-	$x = (new Fraction(250,400))->
-		simplify()->
-		subtract(new Fraction(1,4))->
-		multiply(new Fraction(1,2))->
-		divide(new Fraction(1,32));
-		
-	$x->display();
-*/
 	
 	
 	echo "unit tests complete";
